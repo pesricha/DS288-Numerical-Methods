@@ -7712,7 +7712,7 @@ rel_J_50_10 : -7.783531300479479e-06
 <span class="n">J_50</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.1384e-01</span>
 
 <span class="c1"># Iterating over a for loop from i = 8 to 0 (inclusive) to compute the subsequent values using the iterative scheme  </span>
-<span class="c1"># J_x[n] = J_x[n-1]* 2*(n+1)/x - J_x[n+2] (Rearranging the scheme and then replacing n+1 with n)</span>
+<span class="c1"># J_x[n] = J_x[n-1]* 2*(n+1)/x - J_x[n+2] (Rearranging the scheme and then replacing n-1 with n)</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
     <span class="n">J_1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">J_1</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span> <span class="o">-</span> <span class="n">J_1</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span>
