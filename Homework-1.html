@@ -7715,7 +7715,7 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Forward-Computation">Forward Computation<a class="anchor-link" href="#Forward-Computation">¶</a></h3><ul>
-<li>We will initialize the first two rows ( $J_0(x)$ and $J_1(x)$ ) from values from the table using only the first 5 digits.</li>
+<li>We will initialize the first two rows ( $J_0(x)$ and $J_1(x)$ ) from values from the table using only the first 5 digits and compute forward.</li>
 <li>Iterative scheme rearranged for forward computation:
 $$J_n(x) = \frac{2(n-1)}{x}J_{n-1}(x) - J_{n-2}(x)$$</li>
 <li>Absolute error can be calculated using: $$|(data - \hat{data})|$$</li>
@@ -7857,7 +7857,7 @@ $$J_n(x) = \frac{2(n-1)}{x}J_{n-1}(x) - J_{n-2}(x)$$</li>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Backward-Computation">Backward Computation<a class="anchor-link" href="#Backward-Computation">¶</a></h3><ul>
-<li>We will initialize the first two rows ( $J_{10}(x)$ and $J_9(x)$ ) from values from the table using only the first 5 digits.</li>
+<li>We will initialize the last two rows ( $J_{10}(x)$ and $J_9(x)$ ) from values from the table using only the first 5 digits and compute backward.</li>
 <li>Iterative scheme rearranged for backeard computation:
 $J_{n}(x) = \frac{2(n-1)}{x}J_{n+1}(x) - J_{n+2}(x)$</li>
 <li>Errors can be calculated similarly to Q1.</li>
