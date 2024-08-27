@@ -7859,7 +7859,7 @@ $$J_n(x) = \frac{2(n-1)}{x}J_{n-1}(x) - J_{n-2}(x)$$</li>
 <h3 id="Backward-Computation">Backward Computation<a class="anchor-link" href="#Backward-Computation">¶</a></h3><ul>
 <li>We will initialize the last two rows ( $J_{10}(x)$ and $J_9(x)$ ) from values from the table using only the first 5 digits and compute backward.</li>
 <li>Iterative scheme rearranged for backeard computation:
-$J_{n}(x) = \frac{2(n-1)}{x}J_{n+1}(x) - J_{n+2}(x)$</li>
+$J_{n}(x) = \frac{2(n+1)}{x}J_{n+1}(x) - J_{n+2}(x)$</li>
 <li>Errors can be calculated similarly to Q1.</li>
 </ul>
 </div>
@@ -7885,7 +7885,10 @@ $J_{n}(x) = \frac{2(n-1)}{x}J_{n+1}(x) - J_{n+2}(x)$</li>
 <span class="n">absolute_error_computed_backward</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">computed_backward</span><span class="o">-</span><span class="n">data</span><span class="p">)</span>
 <span class="n">relative_error_computed_backward</span> <span class="o">=</span> <span class="n">absolute_error_computed_backward</span><span class="o">/</span><span class="n">data</span>
 
-<span class="n">backward_result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'Actual_Value'</span><span class="p">,</span> <span class="s1">'Computed_Value'</span><span class="p">,</span><span class="s1">'Absolute_Error'</span><span class="p">,</span><span class="s1">'Relative_Error'</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span> <span class="p">[</span><span class="s1">'Jn(1)'</span><span class="p">,</span><span class="s1">'Jn(5)'</span><span class="p">,</span><span class="s1">'Jn(50)'</span><span class="p">])</span>
+<span class="n">backward_result</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">'Actual_Value'</span><span class="p">,</span> <span class="s1">'Computed_Value'</span><span class="p">,</span><span class="s1">'Absolute_Error'</span><span class="p">,</span><span class="s1">'Relative_Error'</span><span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span> <span class="p">[</span><span class="s1">'Jn(1)'</span><span class="p">,</span><span class="s1">'Jn(5)'</span><span class="p">,</span><span class="s1">'Jn(50)'</span><span class="p">]</span>
+    <span class="p">)</span>
 <span class="n">backward_result</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'Actual_Value'</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">backward_result</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'Computed_Value'</span><span class="p">]</span> <span class="o">=</span> <span class="n">computed_backward</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">backward_result</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'Absolute_Error'</span><span class="p">]</span> <span class="o">=</span> <span class="n">absolute_error_computed_backward</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -8183,14 +8186,23 @@ $J_{n}(x) = \frac{2(n-1)}{x}J_{n+1}(x) - J_{n+2}(x)$</li>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Difference-Equation-Analysis">Difference Equation Analysis<a class="anchor-link" href="#Difference-Equation-Analysis">¶</a></h3><p>The error behaviour can be analyzed using difference equation analysis.</p>
-<p>We know that to find the class of error growth, we have to write the iterative scheme. $$J_{n}(x) = \frac{2(n-1)}{x}J_{n+1}(x) - J_{n+2}(x)$$</p>
-<p>Now let us assume that the $\frac{2(n-1)}{x}$ is a constant represented by $\beta$. Our scheme then becomes (1) : $$J_{n}(x) = \beta J_{n-1}(x) - J_{n-2}(x)$$</p>
+<p>We know that to find the class of error growth, we have to write the iterative scheme.</p>
+<p>The forward scheme is given by for iteration i $$J_{i}(x) = \frac{2(i-1)}{x}J_{i-1}(x) - J_{i-2}(x)$$</p>
+<p>Now let us assume that the $\frac{2(i-1)}{x}$ is a constant represented by $\beta$. Our scheme then becomes (1) : $$J_{i}(x) = \beta J_{i-1}(x) - J_{i-2}(x)$$</p>
 <p>Where $\beta$ varies with the input x. We can calculate the maximum and minimum values of $\beta$ to get some intuition about the errors.</p>
-<p>As discussed in class, we cannot represent the numbers to their exact precision in computer. Let $\hat{J}_{n}(x)$ represent the representation we can have in our computers (2). $$\hat{J}_{n}(x) = \beta \hat{J}_{n-1}(x) - \hat{J}_{n-2}(x)$$</p>
-<p>Subtracting equation (2) from (1) we get: $$e_{n}(x) = \beta e_{n-1}(x) - e_{n-2}(x)$$</p>
+<p>As discussed in class, we cannot represent the numbers to their exact precision in computer. Let $\hat{J}_{i}(x)$ represent the representation we can have in our computers (2). $$\hat{J}_{i}(x) = \beta \hat{J}_{i-1}(x) - \hat{J}_{i-2}(x)$$</p>
+<p>Subtracting equation (2) from (1) we get: $$e_{i}(x) = \beta e_{i-1}(x) - e_{i-2}(x)$$</p>
 <p>Now, let's assume the error class is exponential</p>
-<p>$$e_n \propto k^n \cdot e_0 \\ \implies k^n = \beta \cdot k^{n-1} - k^{n-2}   \\   \implies k^n - \beta \cdot k^{n-1} + k^{n-2} = 0   \\   \implies k^{n - 2} \left( k^2 - \beta k + 1 \right) = 0  \\  k = \frac{\beta \pm \sqrt{\beta^2 - 4}}{2}$$</p>
-<p>Since Beta is positive the roots of the equation will be real only if $ \beta \geq 2$, which is also the condition for which the error growth will be exponential. We will calculate the values of $\beta$ that we will get for both forward and backward pass.</p>
+<p>$$e_n \propto k^n \\ \implies k^i = \beta \cdot k^{i-1} - k^{i-2}   \\   \implies k^i - \beta \cdot k^{i-1} + k^{i-2} = 0   \\   \implies k^{i - 2} \left( k^2 - \beta k + 1 \right) = 0  \\  k = \frac{\beta \pm \sqrt{\beta^2 - 4}}{2}$$</p>
+<p>Since $\beta &gt; 0$, the roots of the equation will be real only if $ \beta \geq 2$, which is also the condition for which the error growth will be exponential as:</p>
+<p>$$k_1 = \frac{\beta + \sqrt{\beta^2 - 4}}{2} \ and \ k_2 = \frac{\beta - \sqrt{\beta^2 - 4}}{2}$$
+$$\epsilon_n =  C_1 \cdot k_1^n + C_2 \cdot k_2^n$$<br/>
+$$k_2 \leq 1 \ and \ k_1 \geq 1 \ \forall \  \beta \geq 2$$</p>
+<p>For backward computation, we can use the same scheme except the following changes: $$\epsilon_{n} \propto k^{10-n}$$</p>
+<p>$$ e_{i}(x) = \beta e_{i+1}(x) - e_{i+2}(x)$$
+$$\implies k^{10-i} = \beta \cdot k^{10-i-1} - k^{10-i-2}   \\   \implies k^{10- i - 2} \left( k^2 - \beta k + 1 \right) = 0  \\  k = \frac{\beta \pm \sqrt{\beta^2 - 4}}{2}$$</p>
+<p>Which gives us the same condition $\beta \geq 2$.</p>
+<p>Now, we will calculate the values of $\beta$ that we will get for both forward and backward pass in an attempt to justify our claims.</p>
 <hr/>
 </div>
 </div>
@@ -8206,13 +8218,21 @@ $J_{n}(x) = \frac{2(n-1)}{x}J_{n+1}(x) - J_{n+2}(x)$</li>
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">beta_values_forward</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">)],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'Jn(1)'</span><span class="p">,</span><span class="s1">'Jn(5)'</span><span class="p">,</span><span class="s1">'Jn(50)'</span><span class="p">])</span>
 <span class="n">beta_values_backward</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'Jn(1)'</span><span class="p">,</span><span class="s1">'Jn(5)'</span><span class="p">,</span><span class="s1">'Jn(50)'</span><span class="p">],</span> <span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
-    <span class="n">beta_values_forward</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s1">'Jn(1)'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span><span class="p">;</span> <span class="n">beta_values_forward</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s1">'Jn(5)'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span><span class="p">;</span> <span class="n">beta_values_forward</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s1">'Jn(50)'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">50</span>
+    <span class="n">beta_values_forward</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s1">'Jn(1)'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span>
+    <span class="n">beta_values_forward</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s1">'Jn(5)'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span>
+    <span class="n">beta_values_forward</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s1">'Jn(50)'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">50</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">beta_values_backward</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s1">'Jn(1)'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span><span class="p">;</span> <span class="n">beta_values_backward</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s1">'Jn(5)'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span><span class="p">;</span> <span class="n">beta_values_backward</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s1">'Jn(50)'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">50</span>
+    <span class="n">beta_values_backward</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s1">'Jn(1)'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span>
+    <span class="n">beta_values_backward</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s1">'Jn(5)'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span>
+    <span class="n">beta_values_backward</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s1">'Jn(50)'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">50</span>
 
 <span class="n">beta_values_forward</span>
-<span class="n">display_side_by_side</span><span class="p">([</span><span class="n">beta_values_forward</span><span class="p">,</span><span class="n">beta_values_backward</span><span class="p">],</span> <span class="p">[</span><span class="s1">'Table 1.3: Forward Beta Values for computing ith element'</span><span class="p">,</span><span class="s1">'Table 1.4: Backward Beta Values for computing ith element'</span><span class="p">])</span>
+<span class="n">display_side_by_side</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">beta_values_forward</span><span class="p">,</span><span class="n">beta_values_backward</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">'Table 1.3: Forward Beta Values for computing ith element'</span>
+     <span class="p">,</span><span class="s1">'Table 1.4: Backward Beta Values for computing ith element'</span><span class="p">]</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8227,139 +8247,139 @@ $J_{n}(x) = \frac{2(n-1)}{x}J_{n+1}(x) - J_{n+2}(x)$</li>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
 <style type="text/css">
 </style>
-<table id="T_966e8" style="display:inline">
+<table id="T_e65b4" style="display:inline">
 <caption>Table 1.3: Forward Beta Values for computing ith element</caption>
 <thead>
 <tr>
 <th class="blank level0"> </th>
-<th class="col_heading level0 col0" id="T_966e8_level0_col0">Jn(1)</th>
-<th class="col_heading level0 col1" id="T_966e8_level0_col1">Jn(5)</th>
-<th class="col_heading level0 col2" id="T_966e8_level0_col2">Jn(50)</th>
+<th class="col_heading level0 col0" id="T_e65b4_level0_col0">Jn(1)</th>
+<th class="col_heading level0 col1" id="T_e65b4_level0_col1">Jn(5)</th>
+<th class="col_heading level0 col2" id="T_e65b4_level0_col2">Jn(50)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<th class="row_heading level0 row0" id="T_966e8_level0_row0">2</th>
-<td class="data row0 col0" id="T_966e8_row0_col0">2.000000</td>
-<td class="data row0 col1" id="T_966e8_row0_col1">0.400000</td>
-<td class="data row0 col2" id="T_966e8_row0_col2">0.040000</td>
+<th class="row_heading level0 row0" id="T_e65b4_level0_row0">2</th>
+<td class="data row0 col0" id="T_e65b4_row0_col0">2.000000</td>
+<td class="data row0 col1" id="T_e65b4_row0_col1">0.400000</td>
+<td class="data row0 col2" id="T_e65b4_row0_col2">0.040000</td>
 </tr>
 <tr>
-<th class="row_heading level0 row1" id="T_966e8_level0_row1">3</th>
-<td class="data row1 col0" id="T_966e8_row1_col0">4.000000</td>
-<td class="data row1 col1" id="T_966e8_row1_col1">0.800000</td>
-<td class="data row1 col2" id="T_966e8_row1_col2">0.080000</td>
+<th class="row_heading level0 row1" id="T_e65b4_level0_row1">3</th>
+<td class="data row1 col0" id="T_e65b4_row1_col0">4.000000</td>
+<td class="data row1 col1" id="T_e65b4_row1_col1">0.800000</td>
+<td class="data row1 col2" id="T_e65b4_row1_col2">0.080000</td>
 </tr>
 <tr>
-<th class="row_heading level0 row2" id="T_966e8_level0_row2">4</th>
-<td class="data row2 col0" id="T_966e8_row2_col0">6.000000</td>
-<td class="data row2 col1" id="T_966e8_row2_col1">1.200000</td>
-<td class="data row2 col2" id="T_966e8_row2_col2">0.120000</td>
+<th class="row_heading level0 row2" id="T_e65b4_level0_row2">4</th>
+<td class="data row2 col0" id="T_e65b4_row2_col0">6.000000</td>
+<td class="data row2 col1" id="T_e65b4_row2_col1">1.200000</td>
+<td class="data row2 col2" id="T_e65b4_row2_col2">0.120000</td>
 </tr>
 <tr>
-<th class="row_heading level0 row3" id="T_966e8_level0_row3">5</th>
-<td class="data row3 col0" id="T_966e8_row3_col0">8.000000</td>
-<td class="data row3 col1" id="T_966e8_row3_col1">1.600000</td>
-<td class="data row3 col2" id="T_966e8_row3_col2">0.160000</td>
+<th class="row_heading level0 row3" id="T_e65b4_level0_row3">5</th>
+<td class="data row3 col0" id="T_e65b4_row3_col0">8.000000</td>
+<td class="data row3 col1" id="T_e65b4_row3_col1">1.600000</td>
+<td class="data row3 col2" id="T_e65b4_row3_col2">0.160000</td>
 </tr>
 <tr>
-<th class="row_heading level0 row4" id="T_966e8_level0_row4">6</th>
-<td class="data row4 col0" id="T_966e8_row4_col0">10.000000</td>
-<td class="data row4 col1" id="T_966e8_row4_col1">2.000000</td>
-<td class="data row4 col2" id="T_966e8_row4_col2">0.200000</td>
+<th class="row_heading level0 row4" id="T_e65b4_level0_row4">6</th>
+<td class="data row4 col0" id="T_e65b4_row4_col0">10.000000</td>
+<td class="data row4 col1" id="T_e65b4_row4_col1">2.000000</td>
+<td class="data row4 col2" id="T_e65b4_row4_col2">0.200000</td>
 </tr>
 <tr>
-<th class="row_heading level0 row5" id="T_966e8_level0_row5">7</th>
-<td class="data row5 col0" id="T_966e8_row5_col0">12.000000</td>
-<td class="data row5 col1" id="T_966e8_row5_col1">2.400000</td>
-<td class="data row5 col2" id="T_966e8_row5_col2">0.240000</td>
+<th class="row_heading level0 row5" id="T_e65b4_level0_row5">7</th>
+<td class="data row5 col0" id="T_e65b4_row5_col0">12.000000</td>
+<td class="data row5 col1" id="T_e65b4_row5_col1">2.400000</td>
+<td class="data row5 col2" id="T_e65b4_row5_col2">0.240000</td>
 </tr>
 <tr>
-<th class="row_heading level0 row6" id="T_966e8_level0_row6">8</th>
-<td class="data row6 col0" id="T_966e8_row6_col0">14.000000</td>
-<td class="data row6 col1" id="T_966e8_row6_col1">2.800000</td>
-<td class="data row6 col2" id="T_966e8_row6_col2">0.280000</td>
+<th class="row_heading level0 row6" id="T_e65b4_level0_row6">8</th>
+<td class="data row6 col0" id="T_e65b4_row6_col0">14.000000</td>
+<td class="data row6 col1" id="T_e65b4_row6_col1">2.800000</td>
+<td class="data row6 col2" id="T_e65b4_row6_col2">0.280000</td>
 </tr>
 <tr>
-<th class="row_heading level0 row7" id="T_966e8_level0_row7">9</th>
-<td class="data row7 col0" id="T_966e8_row7_col0">16.000000</td>
-<td class="data row7 col1" id="T_966e8_row7_col1">3.200000</td>
-<td class="data row7 col2" id="T_966e8_row7_col2">0.320000</td>
+<th class="row_heading level0 row7" id="T_e65b4_level0_row7">9</th>
+<td class="data row7 col0" id="T_e65b4_row7_col0">16.000000</td>
+<td class="data row7 col1" id="T_e65b4_row7_col1">3.200000</td>
+<td class="data row7 col2" id="T_e65b4_row7_col2">0.320000</td>
 </tr>
 <tr>
-<th class="row_heading level0 row8" id="T_966e8_level0_row8">10</th>
-<td class="data row8 col0" id="T_966e8_row8_col0">18.000000</td>
-<td class="data row8 col1" id="T_966e8_row8_col1">3.600000</td>
-<td class="data row8 col2" id="T_966e8_row8_col2">0.360000</td>
+<th class="row_heading level0 row8" id="T_e65b4_level0_row8">10</th>
+<td class="data row8 col0" id="T_e65b4_row8_col0">18.000000</td>
+<td class="data row8 col1" id="T_e65b4_row8_col1">3.600000</td>
+<td class="data row8 col2" id="T_e65b4_row8_col2">0.360000</td>
 </tr>
 </tbody>
 </table>
      <style type="text/css">
 </style>
-<table id="T_390fc" style="display:inline">
+<table id="T_8d6b6" style="display:inline">
 <caption>Table 1.4: Backward Beta Values for computing ith element</caption>
 <thead>
 <tr>
 <th class="blank level0"> </th>
-<th class="col_heading level0 col0" id="T_390fc_level0_col0">Jn(1)</th>
-<th class="col_heading level0 col1" id="T_390fc_level0_col1">Jn(5)</th>
-<th class="col_heading level0 col2" id="T_390fc_level0_col2">Jn(50)</th>
+<th class="col_heading level0 col0" id="T_8d6b6_level0_col0">Jn(1)</th>
+<th class="col_heading level0 col1" id="T_8d6b6_level0_col1">Jn(5)</th>
+<th class="col_heading level0 col2" id="T_8d6b6_level0_col2">Jn(50)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<th class="row_heading level0 row0" id="T_390fc_level0_row0">8</th>
-<td class="data row0 col0" id="T_390fc_row0_col0">18.000000</td>
-<td class="data row0 col1" id="T_390fc_row0_col1">3.600000</td>
-<td class="data row0 col2" id="T_390fc_row0_col2">0.360000</td>
+<th class="row_heading level0 row0" id="T_8d6b6_level0_row0">8</th>
+<td class="data row0 col0" id="T_8d6b6_row0_col0">18.000000</td>
+<td class="data row0 col1" id="T_8d6b6_row0_col1">3.600000</td>
+<td class="data row0 col2" id="T_8d6b6_row0_col2">0.360000</td>
 </tr>
 <tr>
-<th class="row_heading level0 row1" id="T_390fc_level0_row1">7</th>
-<td class="data row1 col0" id="T_390fc_row1_col0">16.000000</td>
-<td class="data row1 col1" id="T_390fc_row1_col1">3.200000</td>
-<td class="data row1 col2" id="T_390fc_row1_col2">0.320000</td>
+<th class="row_heading level0 row1" id="T_8d6b6_level0_row1">7</th>
+<td class="data row1 col0" id="T_8d6b6_row1_col0">16.000000</td>
+<td class="data row1 col1" id="T_8d6b6_row1_col1">3.200000</td>
+<td class="data row1 col2" id="T_8d6b6_row1_col2">0.320000</td>
 </tr>
 <tr>
-<th class="row_heading level0 row2" id="T_390fc_level0_row2">6</th>
-<td class="data row2 col0" id="T_390fc_row2_col0">14.000000</td>
-<td class="data row2 col1" id="T_390fc_row2_col1">2.800000</td>
-<td class="data row2 col2" id="T_390fc_row2_col2">0.280000</td>
+<th class="row_heading level0 row2" id="T_8d6b6_level0_row2">6</th>
+<td class="data row2 col0" id="T_8d6b6_row2_col0">14.000000</td>
+<td class="data row2 col1" id="T_8d6b6_row2_col1">2.800000</td>
+<td class="data row2 col2" id="T_8d6b6_row2_col2">0.280000</td>
 </tr>
 <tr>
-<th class="row_heading level0 row3" id="T_390fc_level0_row3">5</th>
-<td class="data row3 col0" id="T_390fc_row3_col0">12.000000</td>
-<td class="data row3 col1" id="T_390fc_row3_col1">2.400000</td>
-<td class="data row3 col2" id="T_390fc_row3_col2">0.240000</td>
+<th class="row_heading level0 row3" id="T_8d6b6_level0_row3">5</th>
+<td class="data row3 col0" id="T_8d6b6_row3_col0">12.000000</td>
+<td class="data row3 col1" id="T_8d6b6_row3_col1">2.400000</td>
+<td class="data row3 col2" id="T_8d6b6_row3_col2">0.240000</td>
 </tr>
 <tr>
-<th class="row_heading level0 row4" id="T_390fc_level0_row4">4</th>
-<td class="data row4 col0" id="T_390fc_row4_col0">10.000000</td>
-<td class="data row4 col1" id="T_390fc_row4_col1">2.000000</td>
-<td class="data row4 col2" id="T_390fc_row4_col2">0.200000</td>
+<th class="row_heading level0 row4" id="T_8d6b6_level0_row4">4</th>
+<td class="data row4 col0" id="T_8d6b6_row4_col0">10.000000</td>
+<td class="data row4 col1" id="T_8d6b6_row4_col1">2.000000</td>
+<td class="data row4 col2" id="T_8d6b6_row4_col2">0.200000</td>
 </tr>
 <tr>
-<th class="row_heading level0 row5" id="T_390fc_level0_row5">3</th>
-<td class="data row5 col0" id="T_390fc_row5_col0">8.000000</td>
-<td class="data row5 col1" id="T_390fc_row5_col1">1.600000</td>
-<td class="data row5 col2" id="T_390fc_row5_col2">0.160000</td>
+<th class="row_heading level0 row5" id="T_8d6b6_level0_row5">3</th>
+<td class="data row5 col0" id="T_8d6b6_row5_col0">8.000000</td>
+<td class="data row5 col1" id="T_8d6b6_row5_col1">1.600000</td>
+<td class="data row5 col2" id="T_8d6b6_row5_col2">0.160000</td>
 </tr>
 <tr>
-<th class="row_heading level0 row6" id="T_390fc_level0_row6">2</th>
-<td class="data row6 col0" id="T_390fc_row6_col0">6.000000</td>
-<td class="data row6 col1" id="T_390fc_row6_col1">1.200000</td>
-<td class="data row6 col2" id="T_390fc_row6_col2">0.120000</td>
+<th class="row_heading level0 row6" id="T_8d6b6_level0_row6">2</th>
+<td class="data row6 col0" id="T_8d6b6_row6_col0">6.000000</td>
+<td class="data row6 col1" id="T_8d6b6_row6_col1">1.200000</td>
+<td class="data row6 col2" id="T_8d6b6_row6_col2">0.120000</td>
 </tr>
 <tr>
-<th class="row_heading level0 row7" id="T_390fc_level0_row7">1</th>
-<td class="data row7 col0" id="T_390fc_row7_col0">4.000000</td>
-<td class="data row7 col1" id="T_390fc_row7_col1">0.800000</td>
-<td class="data row7 col2" id="T_390fc_row7_col2">0.080000</td>
+<th class="row_heading level0 row7" id="T_8d6b6_level0_row7">1</th>
+<td class="data row7 col0" id="T_8d6b6_row7_col0">4.000000</td>
+<td class="data row7 col1" id="T_8d6b6_row7_col1">0.800000</td>
+<td class="data row7 col2" id="T_8d6b6_row7_col2">0.080000</td>
 </tr>
 <tr>
-<th class="row_heading level0 row8" id="T_390fc_level0_row8">0</th>
-<td class="data row8 col0" id="T_390fc_row8_col0">2.000000</td>
-<td class="data row8 col1" id="T_390fc_row8_col1">0.400000</td>
-<td class="data row8 col2" id="T_390fc_row8_col2">0.040000</td>
+<th class="row_heading level0 row8" id="T_8d6b6_level0_row8">0</th>
+<td class="data row8 col0" id="T_8d6b6_row8_col0">2.000000</td>
+<td class="data row8 col1" id="T_8d6b6_row8_col1">0.400000</td>
+<td class="data row8 col2" id="T_8d6b6_row8_col2">0.040000</td>
 </tr>
 </tbody>
 </table>
@@ -8396,6 +8416,16 @@ $J_{n}(x) = \frac{2(n-1)}{x}J_{n+1}(x) - J_{n+2}(x)$</li>
 </li>
 </ol>
 <hr/>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 </div>
 </div>
 </div>
