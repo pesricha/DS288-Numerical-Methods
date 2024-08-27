@@ -8196,8 +8196,8 @@ $J_{n}(x) = \frac{2(n+1)}{x}J_{n+1}(x) - J_{n+2}(x)$</li>
 <p>$$e_n \propto k^n \\ \implies k^i = \beta \cdot k^{i-1} - k^{i-2}   \\   \implies k^i - \beta \cdot k^{i-1} + k^{i-2} = 0   \\   \implies k^{i - 2} \left( k^2 - \beta k + 1 \right) = 0  \\  k = \frac{\beta \pm \sqrt{\beta^2 - 4}}{2}$$</p>
 <p>Since $\beta &gt; 0$, the roots of the equation will be real only if $ \beta \geq 2$, which is also the condition for which the error growth will be exponential as:</p>
 <p>$$k_1 = \frac{\beta + \sqrt{\beta^2 - 4}}{2} \ and \ k_2 = \frac{\beta - \sqrt{\beta^2 - 4}}{2}$$
-$$\epsilon_n =  C_1 \cdot k_1^n + C_2 \cdot k_2^n$$<br/>
-$$k_2 \leq 1 \ and \ k_1 \geq 1 \ \forall \  \beta \geq 2$$</p>
+$$\epsilon_n =  C_1 \cdot k_1^n + C_2 \cdot k_2^n$$
+$$since \ k_2 \leq 1 \ and \ k_1 \geq 1 \ \forall \  \beta \geq 2$$</p>
 <p>For backward computation, we can use the same scheme except the following changes: $$\epsilon_{n} \propto k^{10-n}$$</p>
 <p>$$ e_{i}(x) = \beta e_{i+1}(x) - e_{i+2}(x)$$
 $$\implies k^{10-i} = \beta \cdot k^{10-i-1} - k^{10-i-2}   \\   \implies k^{10- i - 2} \left( k^2 - \beta k + 1 \right) = 0  \\  k = \frac{\beta \pm \sqrt{\beta^2 - 4}}{2}$$</p>
