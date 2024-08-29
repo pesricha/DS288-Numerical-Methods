@@ -151,15 +151,14 @@ with starting values taken from Table 1. Use only the first 5 digits given in th
 for each quantity when supplying the starting values to your program. For x = 1,5, and
 50, how accurate is $J_{10}(x)$ ?. Compute both the absolute and relative errors of these values
 taking the tabulated values (table-1) as truth. [3 points]}
-\textbf{Solution:} We will initialize the first two rows ( $J_0(x)$ and $J_1(x)$ ) from values from the table using only the first 5 digits and compute forward.
-- Iterative scheme rearranged for forward computation: 
+\textbf{Solution:} We will initialize the first two rows ( $J_0(x)$ and $J_1(x)$ ) from values from the table using only the first 5 digits and compute forward. Iterative scheme rearranged for forward computation: 
 \begin{equation}
     J_n(x) = \frac{2(n-1)}{x}J_{n-1}(x) - J_{n-2}(x)
     \label{eq:forward}
 \end{equation}
     
-- Absolute error can be calculated using: $$|(data - \hat{data})|$$
-- Relative error can be calculated using: $$|\frac{(data - \hat{data})}{data}|$$
+- Absolute error can be calculated using: $$|(data - \widehat{data})|$$
+- Relative error can be calculated using: $$|\frac{(data -\widehat{data})}{data}|$$
 
 \\
 
@@ -208,7 +207,7 @@ RelativeError  & $2.1308830203 \times 10^{12}$  & $8.0019827270 \times 10^{-2}$ 
 2. From Figure 2, The error growth for x = 5 for forward pass seems to be exponential at around from n = \{6 to 10\}. The error in forward pass grew from order of $10^{-6}$ to order of $10^{-4}$. \\ \\ 
 3. From Figure 3, The error growth for x = 50 is juggling randomly (not exponential) for forward pass. The error in forward pass is maintained in order of $10^{-7}$.
 \\ \\ 
-\textbf{Explainations:}
+\textbf{Explanations:}
 \\ \textit{Observation 1:} For $x=1$, from Table 5, we can see the $\beta \geq 2$ for all iterations, hence the error is increasing exponentially across the whole forward pass in Figure 1.
 \\ \\ \textit{Observation 2:} For $x=5$, from Table 5, we can see that $\beta \geq 2$ for all values of $n \ \epsilon \ \{6,7,8,9,10\}$. Hence the error increases exponentially from $n = 6 \ to \ 10$ and the rest is non-exponential in Figure 2.
 \\ \\ \textit{Observation 3:} For $x=50$, from Table 5, we can see that $\beta < 2$ for all iterations. Hence the error is juggling randomly (not exponential) in Figure 3.
@@ -281,7 +280,7 @@ RelativeError  & $9.5701217983 \times 10^{-6}$ & $-1.6248718727 \times 10^{-5}$ 
 6. From Figure 6, The error growth for x = 50 is juggling randomly (not exponential) The error in backward pass is maintained in order of $10^{-6}$.
 
 
-\textbf{Explainations:}
+\textbf{Explanations:}
 \\ \textit{Observation 4:} For $x=1$, from Table 6, we can see the $\beta \geq 2$ for all iterations, hence the error is increasing exponentially across the whole forward pass in Figure 4.
 \\ \\ \textit{Observation 5:} For $x=5$, from Table 6, we can see that $\beta \geq 2$ for all values of $n \ \epsilon \ \{8,7,6,5,4\}$. Hence the error increases exponentially from $n = 10 \ to \ 4$ in and the rest is non-exponential in Figure 5.
 \\ \\ \textit{Observation 6:} For $x=50$, from Table 6, we can see that $\beta < 2$ for all iterations. Hence the error is juggling randomly (not exponential) in Figure 6. \\
