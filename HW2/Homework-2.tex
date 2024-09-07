@@ -135,12 +135,95 @@ analysis we did in class ?. [4 points]}
     \label{tab:my_label}
 \end{table}
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{}
-    \caption{Example Image}
+    \includegraphics[width=\textwidth]{HW2/convergence.png}
+    \caption{Logarithm of error over the iterations.}
     \label{fig:example}
 \end{figure}
+
+Problem a) has a single root at $x = -0.588401$\\
+Problem b) has root at $x = -0.588401$ with multiplicity 2.
+
+\textbf{From Figure 1, we can make the following observations:}\\
+\textbf{1. Newton's Method}: \\
+Problem a): Shows better than linear convergence.\\
+Reason: Newton's Method has quadratic convergence $\alpha = 2$ for single root problem.\\ \\
+Problem b): Shows linear convergence trend. \\ 
+Reason: Newton's Method has linear convergence $\alpha = 1$ if root multiplicity $m\geq 2$.\\
+
+\textbf{2. Secant Method}: \\
+Problem a): Shows better than linear convergence.\\
+Reason: Secant Method has superlinear convergence $\alpha = 1.62$ for single root problem. \\ \\
+Problem b): Shows linear convergence trend. \\ 
+Reason: Secant Method has linear convergence $\alpha = 1$ if root multiplicity $m\geq 2$.\\
+
+\textbf{3. Modified Newton's Method}: \\
+Shows better than linear convergence rate for both problem a) and b).\\
+Reason: Modified Newton's Method exhibits quadratic convergence irrespective of root multiplicity. \\
+
+\textbf{4. Newton's Method takes less iterations compared to Secant Method} for problem a) and b) as .
+
+For problem a), since $\alpha_{Newton's \ Method} \geq \alpha_{Secant \ Method}$, and hence Newton's converges in less iterations.
+
+For problem b) the asymptotic error constant of Newtons method is less than that of Secant Method and hence Newton's Method converges in less iterations.
+
+$$\lambda_{Newton's Method} \ < \ \lambda_{Secant Method}$$
+
+In general, for same order of convergence $\alpha$, lower value of $\lambda \implies Faster\ Convergence.$ 
+\end{question}
+
+\begin{question}{2. Develop the functional form for a cubicly convergent fixed point iteration function $g(p_{n})$ to solve
+the problem f(x) =0 by writing
+$$g(x) = x - \phi(x)f(x) - \psi(x)f^2(x)$$
+and determining $\phi(x)$ and $\psi(x)$. Specify the asymptotic order of convergence ($\alpha$) and write the
+asymptotic error constant ($\lambda$). Write all expressions in terms of $f(p)$ and its derivatives and
+simplify your answers. You are allowed to scan the hand-written derivation for this part alone.
+Hint: Extend the approach we used in class to derive Newton's method. The scheme you will
+produce is often referred to as "Cubic Newton's Method". [3 points]}
+For cubic convergence, we want $g'(p) = 0$ and $g''(p) = 0$. We also know that $f(p) = 0$ (if p is the root).
+
+We want to evaluate $\phi(x) | f(x) = 0$ and $\psi(x) | f(x) = 0$.
+\begin{equation}
+    \fbox{$g(x) = x - \phi(x)f(x) - \psi(x)f^2(x)$}
+\end{equation}
+$$g'(x) = 1 - \phi'(x)f(x) - \phi(x)f'(x) - \psi'(x)f^2(x) - {2\psi(x)f'(x)f(x)}$$
+$$(Subsituting \ g'(x) = 0 \ and \ f(x) = 0)$$
+$$1 - \phi(x)f'(x) = 0$$
+\begin{equation}
+     \textbf{Ans:} \fbox{ $\implies \phi(x) = \frac{1}{f'(x)} \ and \ \phi'(x) = -\frac{f''(x)}{(f'(x))^2}$}
+\end{equation}
+
+$$We \ will \ now \ find \ g''(x)$$
+$$g'' = \phi''f - \phi'f' - \phi'f' - \phi f'' - \psi''f^2 - 2\psi'f'f - 2\psi' f' f - 2\psi f'' f - 2\psi (f')^2$$
+
+$$(Subsituting \ g''(x) = 0 \ , \ f(x) = 0)$$
+$$ - 2\phi'f' - \phi f'' - 2\psi (f')^2 = 0$$
+
+$$(Subsituting \ (2))$$
+$$2\frac{f''}{(f')^2}f' - \frac{1}{f'(x)} f'' - 2\psi (f')^2 = 0$$
+$$\implies 2\psi (f')^2 = 2\frac{f''}{(f')^2}f' - \frac{1}{f'(x)} f'' $$
+$$\implies 2\psi (f')^2 = \frac{f''}{f'}$$
+\begin{equation}
+    \textbf{Ans:} \fbox{$\implies \psi(x)  = \frac{f''(x)}{2(f'(x))^3}$}
+\end{equation}
+
+$$From\ (1)\ , (2)\ and\ (3)\ we \ have$$
+$$g(x) = x - \frac{1}{f'(x)}f(x) -\frac{f''(x)}{2(f'(x))^3} f^2(x)$$ 
+
+\begin{equation}
+    \textbf{Ans:} \fbox{$\implies g(x) = x - \frac{f(x)}{f'(x)}[1 + \frac{f''(x)f(x)}{2(f'(x))^2}] $}
+\end{equation}
+
+From taylor series, $\zeta$ between x and p,  we know that:
+$$g(x) = g(p) + g'(p)(x-p) + \frac{g''(p)}{2}(x-p^2) + \frac{g'''(\zeta)}{6}(x-p)^3$$
+$$ p_{n+1} = g(p_{n}) = p + \frac{g'''(\zeta)}{6}(p_{n}-p)^3$$
+
+$$ \frac{p_{n+1} - p}{(p_{n}-p)^3} = \frac{g'''(\zeta)}{6} \equiv \frac{\epsilon_{n+1}}{\epsilon_{n}^\alpha} = \lambda$$
+
+\begin{equation}
+    \textbf{Ans:} \fbox{$ \alpha = 3 \ and \ \lambda = \frac{g'''(\zeta)}{6}$}
+\end{equation}
 
 \end{question}
 
