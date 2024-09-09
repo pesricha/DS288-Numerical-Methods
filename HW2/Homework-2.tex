@@ -181,6 +181,7 @@ asymptotic error constant ($\lambda$). Write all expressions in terms of $f(p)$ 
 simplify your answers. You are allowed to scan the hand-written derivation for this part alone.
 Hint: Extend the approach we used in class to derive Newton's method. The scheme you will
 produce is often referred to as "Cubic Newton's Method". [3 points]}
+\textbf{Answer:}
 For cubic convergence, we want $g'(p) = 0$ and $g''(p) = 0$. We also know that $f(p) = 0$ (if p is the root).
 
 We want to evaluate $\phi(x) | f(x) = 0$ and $\psi(x) | f(x) = 0$.
@@ -227,8 +228,43 @@ $$ \frac{p_{n+1} - p}{(p_{n}-p)^3} = \frac{g'''(\zeta)}{6} \equiv \frac{\epsilon
 
 \end{question}
 
+\begin{question} {3. The figure below shows a four bar linkage where $\theta_4$ is the input angle and the output angles $\theta_2$
+and $\theta_3$ are to be determined. The relationships among the linkages can be expressed in terms of
+the two nonlinear equations
+$$f_1(\theta_2,\theta_3)=r_2cos\theta_2+r_3cos\theta_3+r_4cos\theta_4- r_1 =0$$ 
+$$f_2(\theta_2,\theta_3)=r_2sin\theta_2+r_3sin\theta_3+r_4sin\theta_4=0$$
+
+Assume $r_1 = 10,\ r_2 =6,\ r_3=8,\ r_4=4,\ \theta_4=220$°, and solve for $\theta_2$ and $\theta_3$ using Newton's
+method for systems of nonlinear equations. Compute to a relative tolerance of $10^{-4}$ and report
+the number of iterations required to reach this level of convergence. Start with initial guesses of
+$\theta_2$ = 30° and $\theta_3$ = 0°. Think about whether $\theta$ should be specified in radians or degrees in your
+code. Invert the 2x2 Jacobian for this problem. [3 points]}
+\textbf{Answer:} 
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textsc{Iterations} &    $\theta_2$ &    $\theta_3$ \\
+\hline
+0 & 30.00000000 &  0.00000000 \\
+1 & 32.52053015 & -4.70854110 \\
+2 & 32.02031123 & -4.37506065 \\
+3 & 32.01518100 & -4.37098789 \\
+\textbf{4} & \textbf{32.01518036} & \textbf{-4.37098741} \\
+\hline
+\end{tabular}
+\caption{The Scheme Converges in 4th Iteration.}
+\label{tab:theta_values}
+\end{table}
+
+\end{question}
+
 \begin{question} {CODE (Python)}
 \lstinputlisting{Homework-2.py}
+
+
+
 \end{question}
 
 \end{document}
