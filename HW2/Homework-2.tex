@@ -127,8 +127,8 @@ analysis we did in class ?. [4 points]}
     \hline
     &\textbf{iterations}&\textbf{root} &\textbf{iterations}&\textbf{root} &\textbf{iterations}&\textbf{root} \\
     \hline
-         $f(x)=x+e^{-x^2}cosx$& 5 &-0.58840178& 7 &-0.58840178& 5 &-0.58840178	 \\
-         $f(x) =(x+e^{-x^2}cosx)^2$& 19 &	-0.58840144& 34 &-0.58840136& 5 &-0.58840178	 \\
+         $f(x)=x+e^{-x^2}cosx$& 5 &-0.58840178& 8 &-0.58840178& 5 &-0.58840178	 \\
+         $f(x) =(x+e^{-x^2}cosx)^2$& 19 &	-0.58840144& 35 &-0.58840136& 5 &-0.58840178	 \\
     \hline
     \end{tabular}
     \caption{Root values and iterations taken to converge in Newtons. Secant and Modified Newtons methods.}
@@ -147,19 +147,19 @@ Problem b) has root at $x = -0.588401$ with multiplicity 2.
 
 \textbf{From Figure 1, we can make the following observations:}\\
 \textbf{1. Newton's Method}: \\
-Problem a): Shows better than linear convergence.\\
+Problem a): Exhibits Quadratic Convergence.\\
 Reason: Newton's Method has quadratic convergence $\alpha = 2$ for single root problem.\\ \\
-Problem b): Shows linear convergence trend. \\ 
+Problem b): Shows Linear convergence trend. \\ 
 Reason: Newton's Method has linear convergence $\alpha = 1$ if root multiplicity $m\geq 2$.\\
 
 \textbf{2. Secant Method}: \\
-Problem a): Shows better than linear convergence.\\
+Problem a): Shows better than Linear convergence but worse than  Quadratic Convergence.\\
 Reason: Secant Method has superlinear convergence $\alpha = 1.62$ for single root problem. \\ \\
 Problem b): Shows linear convergence trend. \\ 
 Reason: Secant Method has linear convergence $\alpha = 1$ if root multiplicity $m\geq 2$.\\
 
 \textbf{3. Modified Newton's Method}: \\
-Shows better than linear convergence rate for both problem a) and b).\\
+Exhibits Quadratic Convergence rate for both problem a) and b).\\
 Reason: Modified Newton's Method exhibits quadratic convergence irrespective of root multiplicity. \\
 
 \textbf{4. Newton's Method takes less iterations compared to Secant Method} for problem a) and b) as .
