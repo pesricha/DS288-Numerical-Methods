@@ -7,30 +7,32 @@ import pandas as pd
 import warnings
 import matplotlib.pyplot as plt
 import seaborn as sns
+import sympy as sp
 
 pd.options.display.float_format = '{:.8f}'.format
 
 warnings.filterwarnings("ignore")
 
-def f_a(x):
-    return x + np.exp(-x**2)*np.cos(x)
+x = sp.symbols('x')
 
-def f_b(x):
-    fx = f_a(x)
-    return fx*fx
+# fa = x+e**x**2cosx
+f_a = x + sp.exp(-x**2)*sp.cos(x)
+f_b = (x + sp.exp(-x**2)*sp.cos(x))**2
 
-def d_f_a(x):
-    return 1 - 2*x*np.exp(-x**2)*np.cos(x) - np.exp(-x**2)*np.sin(x)
+d_f_a = sp.diff(f_a, x)
+d_f_b = sp.diff(f_b, x)
 
-def d2_f_a(x):
-    return -2*np.exp(-x**2)*np.cos(x) - 4*x*np.exp(-x**2)*np.sin(x) - np.exp(-x**2)*np.cos(x) + 2*x**2*np.exp(-x**2)*np.cos(x) - np.exp(-x**2)*np.sin(x)
+d2_f_a = sp.diff(d_f_a, x)
+d2_f_b = sp.diff(d_f_b, x)
 
-def d2_f_b(x):
-    return 2*f_a(x)*d2_f_a(x) + 2*d_f_a(x)*d_f_a(x)
+f_a = sp.lambdify(x, f_a)
+f_b = sp.lambdify(x, f_b)
 
-def d_f_b(x):
-    return 2*f_a(x)*d_f_a(x)
+d_f_a = sp.lambdify(x, d_f_a)
+d_f_b = sp.lambdify(x, d_f_b)
 
+d2_f_a = sp.lambdify(x, d2_f_a)
+d2_f_b = sp.lambdify(x, d2_f_b)
 
 def modified_newtons_method(f:callable, df:callable, d2f:callable, p0: np.float64, tol : np.float64 =1e-6 , max_iter: int = 1000) ->tuple:
     p = p0
@@ -165,9 +167,6 @@ plt.show()
 # Q3
 
 # %%
-import sympy as sp
-import numpy as np
-
 theta2, theta3 = sp.symbols('theta2 theta3')
 
 r1, r2, r3, r4 = 10, 6, 8, 4
@@ -186,16 +185,18 @@ F_func = sp.lambdify((theta2, theta3), F, 'numpy')
 J_func = sp.lambdify((theta2, theta3), J, 'numpy')
 # end of workaround
 
+theta_values = []
+
 def newton_raphson_system(F_func, J_func, theta0, tol=1e-4, max_iter=1000):
     theta = theta0
-
+    theta_values.append([np.rad2deg(theta[0]), np.rad2deg(theta[1])])
     for i in range(1, max_iter + 1):
         F_val = np.array(F_func(theta[0], theta[1]), dtype=np.float64).flatten()
         J_val = np.array(J_func(theta[0], theta[1]), dtype=np.float64)
 
         delta_theta = np.linalg.solve(J_val, -F_val)
         theta = theta + delta_theta
-
+        theta_values.append([np.rad2deg(theta[0]), np.rad2deg(theta[1])])
         if np.linalg.norm(delta_theta, ord=2) / np.linalg.norm(theta, ord=2)  < tol:
             return i, theta
 
@@ -210,6 +211,13 @@ theta2_sol, theta3_sol = np.rad2deg(theta)
 
 print(f"Solution: theta2 = {theta2_sol} degrees, theta3 = {theta3_sol} degrees")
 print(f"Number of iterations: {iterations}")
+
+# %%
+theta_values = pd.DataFrame(theta_values, columns=['theta2', 'theta3'], index=range(iterations + 1))
+theta_values 
+
+# %%
+error_values_MN_a
 
 # %%
 
