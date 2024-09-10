@@ -15,7 +15,6 @@ warnings.filterwarnings("ignore")
 
 x = sp.symbols('x')
 
-# fa = x+e**x**2cosx
 f_a = x + sp.exp(-x**2)*sp.cos(x)
 f_b = (x + sp.exp(-x**2)*sp.cos(x))**2
 
@@ -80,7 +79,7 @@ def secant(f:callable, p0: np.float64, p1: np.float64, tol : np.float64 =1e-6 , 
         p0 = p1
         p1 = p
         i+=1
-    return i-1,p_values, error
+    return i,p_values, error
 
 iterations_newton_f_a, p_values_newton_f_a, error_values_newton_a = newton_raphson(f_a, d_f_a, 0)
 iterations_newton_f_b, p_values_newton_f_b, error_values_newton_b = newton_raphson(f_b, d_f_b, 0)
@@ -125,6 +124,9 @@ iterations = pd.DataFrame(data =
     )
 
 iterations
+print(error_values_newton_b)
+print(error_values_secant_b)
+print(error_values_MN_b)
 
 
 # %%
@@ -133,28 +135,28 @@ table
 # %%
 plt.figure(figsize=(15, 6))
 
-# Define a harmonious color palette
 colors = sns.color_palette("muted", 6)
+sns.lineplot(y=np.log10(error_values_newton_a), x = range(1, len(error_values_newton_a)+1), color=colors[0], marker='^', linestyle=':', label='Newton A')
+sns.lineplot(y=np.log10(error_values_secant_a), x = range(1, len(error_values_secant_a)+1), color=colors[1], marker='^', linestyle=':', label='Secant A')
+sns.lineplot(y=np.log10(error_values_MN_a), x = range(1, len(error_values_MN_a)+1), color=colors[2], marker='^', linestyle='-', label='Modified Newton A')
+sns.lineplot(y=np.log10(error_values_newton_b), x = range(1, len(error_values_newton_b)+1), color=colors[3], marker='s', linestyle=':', label='Newton B')
+sns.lineplot(y=np.log10(error_values_secant_b),x = range(1, len(error_values_secant_b)+1), color=colors[4], marker='s', linestyle=':', label='Secant B')
+sns.lineplot(y=np.log10(error_values_MN_b),x = range(1, len(error_values_MN_b)+1), color=colors[5], marker='s', linestyle=':', label='Modified Newton B')
 
-# Plot with triangles for A plots and squares for B plots, and dotted lines
-sns.lineplot(data=np.log(error_values_newton_a), color=colors[0], marker='^', linestyle=':', label='Newton A')
-sns.lineplot(data=np.log(error_values_secant_a), color=colors[1], marker='^', linestyle=':', label='Secant A')
-sns.lineplot(data=np.log(error_values_MN_a), color=colors[2], marker='^', linestyle='-', label='Modified Newton A')
-sns.lineplot(data=np.log(error_values_newton_b), color=colors[3], marker='s', linestyle=':', label='Newton B')
-sns.lineplot(data=np.log(error_values_secant_b), color=colors[4], marker='s', linestyle=':', label='Secant B')
-sns.lineplot(data=np.log(error_values_MN_b), color=colors[5], marker='s', linestyle=':', label='Modified Newton B')
+# max_length = len(error_values_secant_b)
+# iterations = np.arange(1,13)
+# linear_convergence = -iterations  # Linear convergence line
+# iterations = np.arange(1, 5)
+# quadratic_convergence = -iterations**2  # Quadratic convergence line
 
-max_length = len(error_values_secant_b)
-iterations = np.arange(25)
-linear_convergence = -iterations  # Linear convergence line
-iterations = np.arange(5)
-quadratic_convergence = -iterations**2  # Quadratic convergence line
-
-plt.plot(quadratic_convergence, 'k-.', label='Quadratic Convergence')
-plt.plot(linear_convergence, 'k--', label='Linear Convergence')
+# plt.plot(range(1,5) ,quadratic_convergence, 'k-.', label='Quadratic Convergence')
+# plt.plot(range(1,13), linear_convergence, 'k--', label='Linear Convergence')
+plt.plot(range(1, 37),[-6]*36, color='black', linestyle='--', label='1e-6 line')
 plt.xlabel('Iteration')
 plt.ylabel('Log(Error)')
 plt.title('Convergence of Methods')
+plt.yticks(np.arange(-12, 6, 3))
+plt.xticks(np.arange(1, 36, 1))
 plt.legend()
 
 plt.gca().spines['top'].set_visible(False)
@@ -219,7 +221,7 @@ theta_values
 # %%
 error_values_MN_a
 
-# %%
-
+# %% [markdown]
+# ----
 
 
