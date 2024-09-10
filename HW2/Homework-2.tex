@@ -171,7 +171,7 @@ For problem b) the asymptotic error constant of Newtons method is less than that
 $$\lambda_{Newton's Method} \ < \ \lambda_{Secant Method}$$
 
 In general, for same order of convergence $\alpha$, lower value of $\lambda \implies Faster\ Convergence.$ 
-\end{question}
+
 
 \begin{question}{2. Develop the functional form for a cubicly convergent fixed point iteration function $g(p_{n})$ to solve
 the problem f(x) =0 by writing
@@ -257,6 +257,39 @@ code. Invert the 2x2 Jacobian for this problem. [3 points]}
 \caption{The Scheme Converges in 4th Iteration.}
 \label{tab:theta_values}
 \end{table}
+
+We will use the Newton's Method for system of non linear equations\footnote{https://math.stackexchange.com/questions/2094608/newton-method-to-solve-nonlinear-system}.
+
+\[
+\begin{array}{ccc}
+F(\Theta) = \begin{bmatrix}
+f_1(\theta_2, \theta_3) \\
+f_2(\theta_2, \theta_3)
+\end{bmatrix}
+&
+\quad
+J(\Theta) = \begin{bmatrix}
+\frac{\partial f_1}{\partial \theta_2} & \frac{\partial f_1}{\partial \theta_3} \\
+\frac{\partial f_2}{\partial \theta_2} & \frac{\partial f_2}{\partial \theta_3}
+\end{bmatrix}
+&
+\quad
+\Theta = \begin{bmatrix}
+    \theta_2 \\
+    \theta_3
+\end{bmatrix}
+\end{array}
+\]
+
+$$G(\Theta) = \Theta - J(\Theta)^{-1} F(\Theta)$$
+\begin{center}
+    \fbox{$\Theta^{(n+1)} = \Theta^{(n)} - J(\Theta^{(n)})^{-1} F(\Theta^{(n)})$
+    } \\
+\end{center}
+
+Using this iterative scheme, we can find the values of $\theta_2$ and $\theta_3$ (Table 2). The scheme converges in the 4th iteration.
+
+
 
 \end{question}
 
