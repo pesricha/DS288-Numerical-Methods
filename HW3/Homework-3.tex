@@ -182,7 +182,48 @@ data below). Report the value of $dt$ you use to achieve ‘reasonable’ result
 plot of your interpolated shape (not the numeric values of P(t)) as well as plots of f(t)
 and g(t) individually. [3 points]}
 
-For a very low value of dt, we can visualize the value of $P(f(t), g(t))$, $f(t)$ and $g(t)$ in a graph. 
+For a very low value of dt(= 0.1250), we can visualize the value of $P(t)$, $f(t)$ and $g(t)$
+\begin{figure}[H]
+    \begin{minipage}{0.32\textwidth}
+        \includegraphics[width=\textwidth]{HW3/Q2images/e_0.1250.png} % Replace with your figure file
+        \caption{$P(f(t), g(t))$ at dt = 0.125}
+        \label{}
+    \end{minipage}%
+    \begin{minipage}{0.67\textwidth}
+
+        \includegraphics[width=\textwidth]{HW3/Q2images/xy_0.1250.png} % Replace with your figure file
+        \caption{$x = f(t)$ and $y = g(t)$ for dt = 0.1250}
+        \label{fig:fig2}
+    \end{minipage}%
+\end{figure}
+
+
+\begin{center}
+    This curve is smooth, but we can see the spurious (oscillations) at the end points. This is because the underlying polynomial of neville's algorithm is \textsc{lagrange} which is a \textit{Global Interpolating Polynomial} and hence the oscillations are observed. We can use a larger value of \\ 
+    \hfill \\
+    \boxed{$$dt = 0.8$$} \\
+    \hfill \\
+    to get a more reasonable curve which looks more like the letter \textbf{'e'} (but is not as smooth.) \\
+    \hfill \\
+
+    We can see that there's a clear tradeoff between number of smoothness ($\downarrow dt$) and avoiding oscillations at end points ($\uparrow dt$).
+\end{center}
+
+\begin{figure}[H]
+    \begin{minipage}{0.32\textwidth}
+        \includegraphics[width=\textwidth]{HW3/Q2images/e_0.8.png} % Replace with your figure file
+        \caption{$P(f(t), g(t))$ at dt = 0.8}
+        \label{}
+    \end{minipage}%
+    \begin{minipage}{0.67\textwidth}
+
+        \includegraphics[width=\textwidth]{HW3/Q2images/xy_0.8.png} % Replace with your figure file
+        \caption{$x = f(t)$ and $y = g(t)$ for dt = 0.1250}
+        \label{fig:fig2}
+    \end{minipage}%
+\end{figure}
+
+\hrule
 
 \end{question}
 
@@ -190,6 +231,21 @@ For a very low value of dt, we can visualize the value of $P(f(t), g(t))$, $f(t)
 of the cubics which comprise the interpolants for both f(t) and g(t). How does your letter
 compare with that produced in problem (2)? Explain any differences. [3.5 points]
 }
+
+\begin{figure}[H]
+    \begin{minipage}{0.32\textwidth}
+        \includegraphics[width=\textwidth]{HW3/Q2images/} % Replace with your figure file
+        \caption{$P(f(t), g(t))$ at dt = 0.8}
+        \label{}
+    \end{minipage}%
+    \begin{minipage}{0.67\textwidth}
+
+        \includegraphics[width=\textwidth]{HW3/Q2images/xy_0.8.png} % Replace with your figure file
+        \caption{$x = f(t)$ and $y = g(t)$ for dt = 0.1250}
+        \label{fig:fig2}
+    \end{minipage}%
+\end{figure}
+
     
 \end{question}
 
