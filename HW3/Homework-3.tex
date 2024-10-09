@@ -152,14 +152,12 @@ $i$ & $y = x - e^x$ & $ x = Q_{i0}$ & $Q_{i1}$ & $Q_{i2}$ & $Q_{i3}$ \\
     \hfill \\
     We get the least relative error in $Q_{43}$ \\
     \hfill \\
-    \boxed{Computed Value = 5.671426e-01} \\
+    \boxed{Computed Value = $$5.671426\times10^{-01}$$} \\
     \hfill \\
-    \boxed{Relative Error ($$Q_{43}$$) = 1.175861e-06}
+    \boxed{Relative Error ($$Q_{43}$$) = $$1.175861\times10^{-06}$$}
     
 \end{center}
-
-\hrule  
-\end{question}
+  
 
 \begin{question}{Q2 In some applications one is faced with the problem of interpolating points which lie on
 a curved path in the plane, for example in computer printing of enlarged letters. Often
@@ -199,14 +197,10 @@ For a very low value of dt(= 0.1250), we can visualize the value of $P(t)$, $f(t
 
 
 \begin{center}
-    This curve is smooth, but we can see the spurious (oscillations) at the end points. This is because the underlying polynomial of neville's algorithm is \textsc{lagrange} which is a \textit{Global Interpolating Polynomial} and hence the oscillations are observed. We can use a larger value of \\ 
-    \hfill \\
+    This curve is smooth but we can see the \textbf{spurious oscillations} at the end points. The underlying polynomial is \textsc{lagrange} which is a \textbf{Global Interpolating Polynomial} and hence the oscillations are observed. We can use a larger value of \\ 
     \boxed{$$dt = 0.8$$} \\
-    \hfill \\
-    to get a more reasonable curve which looks more like the letter \textbf{'e'} (but is not as smooth.) \\
-    \hfill \\
-
-    We can see that there's a clear tradeoff between number of smoothness ($\downarrow dt$) and avoiding oscillations at end points ($\uparrow dt$).
+    to get a more reasonable curve which looks more like the letter \textbf{'e'} (but is not as smooth.) 
+We can see that there's a clear tradeoff between number of smoothness ($\downarrow dt$) and avoiding oscillations at end points ($\uparrow dt$).
 \end{center}
 
 \begin{figure}[H]
@@ -221,10 +215,6 @@ For a very low value of dt(= 0.1250), we can visualize the value of $P(t)$, $f(t
         \caption{$x = f(t)$ and $y = g(t)$ for dt = 0.1250}
     \end{minipage}%
 \end{figure}
-
-\hrule
-
-\end{question}
 
 \begin{question}{Q3 Repeat problem (2) with a natural cubic spline. Also report all four coefficients for each
 of the cubics which comprise the interpolants for both f(t) and g(t). How does your letter
@@ -245,55 +235,68 @@ compare with that produced in problem (2)? Explain any differences. [3.5 points]
     \end{minipage}%
 \end{figure}
 
-\begin{table}[H]
-\centering
-\begin{tabular}{c c c c c}
-\hline
-\textbf{Section} & \textbf{a} & \textbf{b} & \textbf{c} & \textbf{d} \\
-\hline
-0 & 8.2085e-02 & -1.1102e-16 & 4.3791e-01 & 7.0000e-01 \\
-1 & -4.0427e-02 & 2.4626e-01 & 6.8417e-01 & 1.2200e+00 \\
-2 & -2.2038e-01 & 1.2497e-01 & 1.0554e+00 & 2.1100e+00 \\
-3 & 7.1935e-02 & -5.3616e-01 & 6.4422e-01 & 3.0700e+00 \\
-4 & 8.2637e-02 & -3.2035e-01 & -2.1229e-01 & 3.2500e+00 \\
-5 & -1.2481e-02 & -7.2441e-02 & -6.0508e-01 & 2.8000e+00 \\
-6 & 8.7289e-02 & -1.0989e-01 & -7.8740e-01 & 2.1100e+00 \\
-7 & -6.6750e-03 & 1.5198e-01 & -7.4531e-01 & 1.3000e+00 \\
-8 & 7.9411e-02 & 1.3196e-01 & -4.6137e-01 & 7.0000e-01 \\
-9 & 1.9031e-02 & 3.7019e-01 & 4.0779e-02 & 4.5000e-01 \\
-10 & -1.4553e-01 & 4.2728e-01 & 8.3825e-01 & 8.8000e-01 \\
-11 & 3.1069e-03 & -9.3207e-03 & 1.2562e+00 & 2.0000e+00 \\
-\hline
-\end{tabular}
-\caption{Coefficients for $f(t)$ for equation $S_i = a_i(x-x_i)^3 + b_i(x-x_i)^2 + c_i(x-x_i) + d_i$}
-\label{tab:oginal_matrix_transpose_with_section}
-\end{table}
-
-\tc
 
 \begin{table}[H]
 \centering
-\begin{tabular}{c c c c c}
-\hline
-\textbf{Section} & \textbf{a} & \textbf{b} & \textbf{c} & \textbf{d} \\\hline
-0 & 7.2213e-02 & 1.1102e-16 & -5.5221e-01 & 2.2500e+00 \\
-1 & -4.1067e-02 & 2.1664e-01 & -3.3557e-01 & 1.7700e+00 \\
-2 & 7.2053e-02 & 9.3440e-02 & -2.5493e-02 & 1.6100e+00 \\
-3 & -1.3715e-01 & 3.0960e-01 & 3.7755e-01 & 1.7500e+00 \\
-4 & -2.3466e-02 & -1.0184e-01 & 5.8531e-01 & 2.3000e+00 \\
-5 & 1.1010e-02 & -1.7224e-01 & 3.1123e-01 & 2.7600e+00 \\
-6 & -1.0574e-02 & -1.3921e-01 & -2.1795e-04 & 2.9100e+00 \\
-7 & -2.8714e-02 & -1.7093e-01 & -3.1036e-01 & 2.7600e+00 \\
-8 & 1.1543e-01 & -2.5707e-01 & -7.3836e-01 & 2.2500e+00 \\
-9 & 6.9979e-03 & 8.9216e-02 & -9.0621e-01 & 1.3700e+00 \\
-10 & 1.1658e-01 & 1.1021e-01 & -7.0679e-01 & 5.6000e-01 \\
-11 & -1.5332e-01 & 4.5995e-01 & -1.3663e-01 & 8.0000e-02 \\
-\hline
-\end{tabular}
-\caption{Coefficients for $g(t)$ for equation $S_j = a_j(y-y_i)^3 + b_j(y-y_j)^2 + c_j(y-y_j) + d_j$}
-\label{tab:new_matrix_transpose_with_section}
+\begin{minipage}{0.48\textwidth}
+    \centering
+    \footnotesize
+    \begin{tabular}{c c c c c}
+    \hline
+    \textbf{$S_{i}$} & \textbf{a} & \textbf{b} & \textbf{c} & \textbf{d} \\
+    \hline
+    0  & 8.2085e-02  & -1.1102e-16 & 4.3791e-01 & 7.0000e-01 \\
+    1  & -4.0427e-02 & 2.4626e-01  & 6.8417e-01 & 1.2200e+00 \\
+    2  & -2.2038e-01 & 1.2497e-01  & 1.0554e+00 & 2.1100e+00 \\
+    3  & 7.1935e-02  & -5.3616e-01 & 6.4422e-01 & 3.0700e+00 \\
+    4  & 8.2637e-02  & -3.2035e-01 & -2.1229e-01 & 3.2500e+00 \\
+    5  & -1.2481e-02 & -7.2441e-02 & -6.0508e-01 & 2.8000e+00 \\
+    6  & 8.7289e-02  & -1.0989e-01 & -7.8740e-01 & 2.1100e+00 \\
+    7  & -6.6750e-03 & 1.5198e-01  & -7.4531e-01 & 1.3000e+00 \\
+    8  & 7.9411e-02  & 1.3196e-01  & -4.6137e-01 & 7.0000e-01 \\
+    9  & 1.9031e-02  & 3.7019e-01  & 4.0779e-02  & 4.5000e-01 \\
+    10 & -1.4553e-01 & 4.2728e-01  & 8.3825e-01  & 8.8000e-01 \\
+    11 & 3.1069e-03  & -9.3207e-03 & 1.2562e+00  & 2.0000e+00 \\
+    \hline
+    \end{tabular}
+    \caption{Coefficients for $x = f(t)$ for the equation $S_i = a_i(t-t_i)^3 + b_i(t-t_i)^2 + c_i(t-t_i) + d_i$}
+    \label{tab:original_matrix}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+    \centering
+    \footnotesize
+    \begin{tabular}{c c c c c}
+    \hline
+    \textbf{$S_j$} & \textbf{a} & \textbf{b} & \textbf{c} & \textbf{d} \\
+    \hline
+    0  & 7.2213e-02  & 1.1102e-16  & -5.5221e-01 & 2.2500e+00 \\
+    1  & -4.1067e-02 & 2.1664e-01  & -3.3557e-01 & 1.7700e+00 \\
+    2  & 7.2053e-02  & 9.3440e-02  & -2.5493e-02 & 1.6100e+00 \\
+    3  & -1.3715e-01 & 3.0960e-01  & 3.7755e-01 & 1.7500e+00 \\
+    4  & -2.3466e-02 & -1.0184e-01 & 5.8531e-01 & 2.3000e+00 \\
+    5  & 1.1010e-02  & -1.7224e-01 & 3.1123e-01 & 2.7600e+00 \\
+    6  & -1.0574e-02 & -1.3921e-01 & -2.1795e-04 & 2.9100e+00 \\
+    7  & -2.8714e-02 & -1.7093e-01 & -3.1036e-01 & 2.7600e+00 \\
+    8  & 1.1543e-01  & -2.5707e-01 & -7.3836e-01 & 2.2500e+00 \\
+    9  & 6.9979e-03  & 8.9216e-02  & -9.0621e-01 & 1.3700e+00 \\
+    10 & 1.1658e-01  & 1.1021e-01  & -7.0679e-01 & 5.6000e-01 \\
+    11 & -1.5332e-01 & 4.5995e-01  & -1.3663e-01 & 8.0000e-02 \\
+    \hline
+    \end{tabular}
+    \caption{Coefficients for $y = g(t)$ for the equation \ \ $S_j = a_j(t-t_i)^3 + b_j(t-t_j)^2 + c_j(t-t_j) + d_j$}
+    \label{tab:new_matrix}
+\end{minipage}
 \end{table}
 
+
+\begin{tcolorbox}
+    The letter \textbf{'e'} for the \boxed{dt = 0.1250} using cubic spline is \textbf{smoother} and has \textbf{no spurious oscillations at the endpoints} compared to the approach used in Q2. This difference is arising because:
+    \begin{enumerate}
+        \item \textbf{Smoothness} : Cubic spline is a \textbf{piecewise interpolation polynomial} that matches the \textbf{value}, \textbf{derivative} and \textbf{second derivative} at each point ensuring smoothness.
+        \item \textbf{No spurious oscillations} : The fitting between points $t_i$ and $t_{i+1}$ \textbf{depends only on} $t_i$ and $t_{i+1}$ and it's derivatives and \textbf{not faraway points} that shouldn't have influence in the vicinity of  $t_i$ and $t_{i+1}$.
+    \end{enumerate}
+\end{tcolorbox}
 
 
 
@@ -340,7 +343,7 @@ Transformed approach & $pred_{transformed}$ & $E_{transformed}(y_i, \hat{y_i})$ 
     \boxed{$$a_{non-linear} = 0.00618$$}  \boxed{$$b_{non-linear} = 16.96953$$ } \\
     \hfill \\
     \begin{tcolorbox}
-        We will get \textbf{different} a and b values using the \textbf{non-linear approach} (assuming perfect maths) as both approaches are minimizing different error functions $E_{transformed}$ and $E_{non-linear}$. From the table below, we can see that the $pred_{non-linear}$ minimizes $E_{non-linear}$ and $pred_{transformed}$ minimizes $E_{transformed}$. Moreover, the \textbf{transformed} approach is not the least squares approximation of the original problem.
+        We will get \textbf{different} a and b values using the \textbf{non-linear approach} (assuming perfect maths) as both approaches are minimizing different error functions $E_{transformed}$ and $E_{non-linear}$. From the table below, we can see that the $pred_{non-linear}$ minimizes $E_{non-linear}$ and $pred_{transformed}$ minimizes $E_{transformed}$. Moreover, the \textbf{transformed} approach is not the least squares approximation of the original problem (as the $E_{transformed}$ is not least squares error)
     \end{tcolorbox}
 
     $pred_{transformed}$ = [ 16.8639, 9.14577, 4.95999 ] ,  $pred_{non-linear}$ = [ 16.9695, 9.11345, 4.89436 ]
@@ -362,6 +365,10 @@ Transformed approach & $pred_{transformed}$ & $E_{transformed}(y_i, \hat{y_i})$ 
 
 \end{center}
 
+\end{question}
+
+\begin{question}{CODE (Python)}
+\lstinputlisting{Homework-3.py}
 \end{question}
 
 \end{document}
