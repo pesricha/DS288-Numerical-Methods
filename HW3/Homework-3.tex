@@ -219,7 +219,6 @@ For a very low value of dt(= 0.1250), we can visualize the value of $P(t)$, $f(t
 
         \includegraphics[width=\textwidth]{HW3/Q2images/xy_0.8.png} % Replace with your figure file
         \caption{$x = f(t)$ and $y = g(t)$ for dt = 0.1250}
-        \label{fig:fig2}
     \end{minipage}%
 \end{figure}
 
@@ -234,17 +233,69 @@ compare with that produced in problem (2)? Explain any differences. [3.5 points]
 
 \begin{figure}[H]
     \begin{minipage}{0.32\textwidth}
-        \includegraphics[width=\textwidth]{HW3/Q2images/} % Replace with your figure file
-        \caption{$P(f(t), g(t))$ at dt = 0.8}
+        \includegraphics[width=\textwidth]{HW3/Q3images/e.png} % Replace with your figure file
+        \caption{$P(t)$ for cubic spline.}
         \label{}
     \end{minipage}%
     \begin{minipage}{0.67\textwidth}
 
-        \includegraphics[width=\textwidth]{HW3/Q2images/xy_0.8.png} % Replace with your figure file
-        \caption{$x = f(t)$ and $y = g(t)$ for dt = 0.1250}
+        \includegraphics[width=\textwidth]{HW3/Q3images/xy.png} % Replace with your figure file
+        \caption{$x = f(t)$ and $y = g(t)$ for dt=0.1250 for cubic spline}
         \label{fig:fig2}
     \end{minipage}%
 \end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c c}
+\hline
+\textbf{Section} & \textbf{a} & \textbf{b} & \textbf{c} & \textbf{d} \\
+\hline
+0 & 8.2085e-02 & -1.1102e-16 & 4.3791e-01 & 7.0000e-01 \\
+1 & -4.0427e-02 & 2.4626e-01 & 6.8417e-01 & 1.2200e+00 \\
+2 & -2.2038e-01 & 1.2497e-01 & 1.0554e+00 & 2.1100e+00 \\
+3 & 7.1935e-02 & -5.3616e-01 & 6.4422e-01 & 3.0700e+00 \\
+4 & 8.2637e-02 & -3.2035e-01 & -2.1229e-01 & 3.2500e+00 \\
+5 & -1.2481e-02 & -7.2441e-02 & -6.0508e-01 & 2.8000e+00 \\
+6 & 8.7289e-02 & -1.0989e-01 & -7.8740e-01 & 2.1100e+00 \\
+7 & -6.6750e-03 & 1.5198e-01 & -7.4531e-01 & 1.3000e+00 \\
+8 & 7.9411e-02 & 1.3196e-01 & -4.6137e-01 & 7.0000e-01 \\
+9 & 1.9031e-02 & 3.7019e-01 & 4.0779e-02 & 4.5000e-01 \\
+10 & -1.4553e-01 & 4.2728e-01 & 8.3825e-01 & 8.8000e-01 \\
+11 & 3.1069e-03 & -9.3207e-03 & 1.2562e+00 & 2.0000e+00 \\
+\hline
+\end{tabular}
+\caption{Coefficients for $f(t)$ for equation $S_i = a_i(x-x_i)^3 + b_i(x-x_i)^2 + c_i(x-x_i) + d_i$}
+\label{tab:oginal_matrix_transpose_with_section}
+\end{table}
+
+\tc
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c c}
+\hline
+\textbf{Section} & \textbf{a} & \textbf{b} & \textbf{c} & \textbf{d} \\\hline
+0 & 7.2213e-02 & 1.1102e-16 & -5.5221e-01 & 2.2500e+00 \\
+1 & -4.1067e-02 & 2.1664e-01 & -3.3557e-01 & 1.7700e+00 \\
+2 & 7.2053e-02 & 9.3440e-02 & -2.5493e-02 & 1.6100e+00 \\
+3 & -1.3715e-01 & 3.0960e-01 & 3.7755e-01 & 1.7500e+00 \\
+4 & -2.3466e-02 & -1.0184e-01 & 5.8531e-01 & 2.3000e+00 \\
+5 & 1.1010e-02 & -1.7224e-01 & 3.1123e-01 & 2.7600e+00 \\
+6 & -1.0574e-02 & -1.3921e-01 & -2.1795e-04 & 2.9100e+00 \\
+7 & -2.8714e-02 & -1.7093e-01 & -3.1036e-01 & 2.7600e+00 \\
+8 & 1.1543e-01 & -2.5707e-01 & -7.3836e-01 & 2.2500e+00 \\
+9 & 6.9979e-03 & 8.9216e-02 & -9.0621e-01 & 1.3700e+00 \\
+10 & 1.1658e-01 & 1.1021e-01 & -7.0679e-01 & 5.6000e-01 \\
+11 & -1.5332e-01 & 4.5995e-01 & -1.3663e-01 & 8.0000e-02 \\
+\hline
+\end{tabular}
+\caption{Coefficients for $g(t)$ for equation $S_j = a_j(y-y_i)^3 + b_j(y-y_j)^2 + c_j(y-y_j) + d_j$}
+\label{tab:new_matrix_transpose_with_section}
+\end{table}
+
+
+
 
     
 \end{question}
