@@ -1,0 +1,161 @@
+%%%%%%%%%%%%%%%%%%%%%%%%% NOTE %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% You can ignore everything from here until             %%
+%% "Question 1: Introduction"                            %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[8pt]{article}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}  % Some math symbols
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage[x11names, rgb]{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\usetikzlibrary{decorations,arrows,shapes}
+\usepackage{float} % Add this package to control float placement
+\usepackage{etoolbox}
+\usepackage{enumerate}
+\usepackage{listings}
+\lstset{
+    language=Python,           % Set the language of the code
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\color{blue}, % Set color for keywords
+    commentstyle=\color{gray}, % Set color for comments
+    stringstyle=\color{red},   % Set color for strings
+    numbers=left,              % Display line numbers on the left
+    numberstyle=\tiny\color{gray}, % Style for line numbers
+    frame=single,              % Add a frame around the code
+    breaklines=true            % Allow line breaking
+}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+
+\newcommand{\N}{\mathbb N}
+\newcommand{\E}{\mathbb E}
+\newcommand{\V}{Var}
+\renewcommand{\P}{\mathbb P}
+\newcommand{\f}{\frac}
+
+
+\newcommand{\nopagenumbers}{
+    \pagestyle{empty}
+}
+
+\def\indented#1{\list{}{}\item[]}
+\let\indented=\endlist
+
+\providetoggle{questionnumbers}
+\settoggle{questionnumbers}{true}
+\newcommand{\noquestionnumbers}{
+    \settoggle{questionnumbers}{false}
+}
+
+\newcounter{questionCounter}
+\newenvironment{question}[2][\arabic{questionCounter}]{%
+    \addtocounter{questionCounter}{1}%
+    \setcounter{partCounter}{0}%
+    \vspace{.25in} \hrule \vspace{0.4em}%
+        \noindent{\bf \iftoggle{questionnumbers}{#1: }{}#2}%
+    \vspace{0.8em} \hrule \vspace{.10in}%
+}{$ $\newpage}
+
+\newcounter{partCounter}[questionCounter]
+\renewenvironment{part}[1][\alph{partCounter}]{%
+    \addtocounter{partCounter}{1}%
+    \vspace{.10in}%
+    \begin{indented}%
+       {\bf (#1)} %
+}{\end{indented}}
+
+\def\show#1{\ifdefempty{#1}{}{#1\\}}
+
+\newcommand{\header}{%
+\begin{center}
+    {\Large \show\myhwname}
+    \show\myname
+    \show\myemail
+    \show\mysection
+    \show\hwname
+\end{center}}
+
+\usepackage{hyperref} % for hyperlinks
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+%%%%%%%%%%%%%%%%% Identifying Information %%%%%%%%%%%%%%%%%
+%% For 312, we'd rather you DIDN'T tell us who you are   %%
+%% in your homework so that we're not biased when        %%
+%% So, even if you fill this information in, it will not %%
+%% show up in the document unless you uncomment \header  %%
+%% below                                                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\myhwname}{DS288 (AUG) 3:0 Numerical Methods }
+\newcommand{\myname}{Naman Pesricha }
+\newcommand{\myemail}{namanp@iisc.ac.in}
+\newcommand{\hwname}{\textbf{Homework-4}}
+\newcommand{\mysection}{SR - 24115}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%% Document Options %%%%%%%%%%%%%%%%%%%%%%
+\noquestionnumbers
+\nopagenumbers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\header
+
+\begin{question}{Q1
+Increment $\theta$ from $0^o$
+to $360^o$
+in steps of $1^o$ and compute $\phi$ and $d\phi/d\theta$ at each point.
+Report plot of $\phi$ and $d\phi/d\theta$ versus $\theta$. For the first derivative, compute both a first
+forward difference and a centered difference approximation. Plot the two curves on the
+same graph. How do these two curves compare?. Which do you expect to be more
+accurate? When using the Newton Algorithm from Homework–2, as you increment $\theta$
+use the previously found solution as an initial starting guess for the next value of $\theta$. [4
+points]
+}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{HW4/imagesmall/phi vs theta.png}
+        \caption{Caption for the first image}
+        \label{fig:image1}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{HW4/imagesmall/dphi vs theta.png}
+        \caption{Caption for the second image}
+        \label{fig:image2}
+    \end{minipage}
+    \caption{Overall caption for both images}
+\end{figure}
+
+\end{question}
+
+\begin{question} {Q2 Now solve the second linkage problem by determining \(\alpha\) from your computed values of \(\phi\) and using Newton’s Method on the second linkage system to compute \(\beta\), \(\frac{d\beta}{dt}\) (i.e., the angular velocity in rad/sec), and \(\frac{d^2\beta}{dt^2}\) (i.e., the angular acceleration in rad/sec\(^2\)).
+
+Make plots of these quantities as a function of \(\theta\), and in the case of the derivatives, compute and plot both forward and centered approximations as before. Note that
+
+\[
+\frac{d\beta}{dt} = \omega \frac{d\beta}{d\theta}; \quad \frac{d^2\beta}{dt^2} = \omega^2 \frac{d^2\beta}{d\theta^2}
+\]
+
+where \(\omega\) is the rotating speed of the driving gear (in this case, assume that \(\omega = 450 \ \text{rad/min}\)).
+
+As a check on your answers, you should find that when \(\theta = 100^\circ\), the angular velocity is near \(10 \ \text{rad/sec}\) and the angular acceleration is close to \(-25 \ \text{rad/sec}^2\). Be careful with units while programming!
+}
+    
+\end{question}
+
+\end{document}
+
+
+
