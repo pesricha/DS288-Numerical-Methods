@@ -121,27 +121,30 @@ use the previously found solution as an initial starting guess for the next valu
 points]
 }
 
-\begin{figure}[H]
+\begin{tcolorbox}
+    \begin{figure}[H]
     \centering
-    \begin{minipage}{0.45\textwidth}
+    \begin{minipage}{0.49\textwidth}
         \centering
         \includegraphics[width=\textwidth]{HW4/imagesmall/phi vs theta.png}
-        \caption{Caption for the first image}
+        \caption{$\phi$ vs $\theta$ }
         \label{fig:image1}
     \end{minipage}\hfill
-    \begin{minipage}{0.45\textwidth}
+    \begin{minipage}{0.502\textwidth}
         \centering
         \includegraphics[width=\textwidth]{HW4/imagesmall/dphi vs theta.png}
-        \caption{Caption for the second image}
+        \caption{$d\phi/d\theta$ vs $\theta$}
         \label{fig:image2}
     \end{minipage}
-    \caption{Overall caption for both images}
 \end{figure}
+\end{tcolorbox}
+\begin{tcolorbox}
+    The values obtained for both ($\frac{d\phi}{d\theta})_{Forward}$ and ($\frac{d\phi}{d\theta})_{Centered}$ almost overlap with each other. \textbf{We expect ($\frac{d\phi}{d\theta})_{Centered}$ to be more accurate as the error term for center difference is $O(h^2)$ and that of forward difference is $O(h)$}.
+\end{tcolorbox} 
 
 \end{question}
 
 \begin{question} {Q2 Now solve the second linkage problem by determining \(\alpha\) from your computed values of \(\phi\) and using Newton’s Method on the second linkage system to compute \(\beta\), \(\frac{d\beta}{dt}\) (i.e., the angular velocity in rad/sec), and \(\frac{d^2\beta}{dt^2}\) (i.e., the angular acceleration in rad/sec\(^2\)).
-
 Make plots of these quantities as a function of \(\theta\), and in the case of the derivatives, compute and plot both forward and centered approximations as before. Note that
 
 \[
@@ -149,9 +152,60 @@ Make plots of these quantities as a function of \(\theta\), and in the case of t
 \]
 
 where \(\omega\) is the rotating speed of the driving gear (in this case, assume that \(\omega = 450 \ \text{rad/min}\)).
-
-As a check on your answers, you should find that when \(\theta = 100^\circ\), the angular velocity is near \(10 \ \text{rad/sec}\) and the angular acceleration is close to \(-25 \ \text{rad/sec}^2\). Be careful with units while programming!
+As a check on your answers, you should find that when \(\theta = 100^\circ\), the angular velocity is near \(10 \ \text{rad/sec}\) and the angular acceleration is close to \(-25 \ \text{rad/sec}^2\). 
 }
+
+\begin{center}
+    From the figure given in assignment, alpha can be computed as: 
+    \fbox{$\alpha = \phi + 180^\circ - 31^\circ$}.
+
+    Then we can solve for $\beta$ using the same method that we used for Q1.
+\end{center}
+
+\begin{tcolorbox}
+    \begin{figure}[H]
+    \centering
+    \begin{minipage}{0.493\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{HW4/imagesmall/beta vs theta.png}
+        \caption{$\phi$ vs $\theta$ }
+        \label{fig:image1}
+    \end{minipage}\hfill
+    \begin{minipage}{0.502\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{HW4/imagesmall/angularvel vs theta.png}
+        \caption{Angular velocity vs $\theta$}
+        \label{fig:image2}
+    \end{minipage}
+\end{figure}
+\end{tcolorbox}
+
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{$\theta$ = 100}& \textbf{Forward Difference} & \textbf{Centered Difference} \\
+        \hline
+        \textbf{Angular Velocity (rad/sec)} & 10.59897 & 10.63198 \\
+        \hline
+        \textbf{Angular Acceleration (rad/sec\(^2\))} & -28.11947 & -28.36941 \\
+        \hline
+    \end{tabular}
+    \caption{Angular Velocity and Acceleration using Forward and Centered Differences at $\theta$ = 100.}
+    \label{tab:angular_values}
+\end{table}
+
+\begin{tcolorbox}
+    From the values in table 1, it's evident that at $\theta = 100^o$, Angular Velocity is close to 10 rad/sec and Angular Acceleration is close to -25 rad/sec$^2$.
+\end{tcolorbox}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{HW4/imagesmall/accel vs theta.png}
+    \caption{Angular acceleration vs $\theta$}
+    \label{fig:fullpageimage}
+\end{figure}
     
 \end{question}
 
