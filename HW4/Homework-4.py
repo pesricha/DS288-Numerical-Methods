@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 from typing import Tuple, List
 
-%matplotlib inline
+# %matplotlib inline
 
 # %%
 # Initialize the data (in inches)
@@ -279,6 +279,7 @@ ax2.set_ylabel(r'$(d\phi/d\theta)_{C}$', color=color)
 ax2.plot(theta_values, dbeta_by_dt_center, label=r'$(d\beta/dt)_{C}$', color='red', linestyle = ':', linewidth = 0.5)
 ax2.tick_params(axis='y', labelcolor=color)
 
+plt.xlim((0,360))
 fig.tight_layout()
 plt.title(r'$\Delta$ and $(d\phi/d\theta)_{C}$ vs $\theta$')
 fig.legend(loc="upper right", bbox_to_anchor=(1,1), bbox_transform=ax1.transAxes)
@@ -294,6 +295,7 @@ ax1.set_xlabel(r'$\theta$ (degrees)')
 ax1.set_ylabel(r'$\Delta$', color=color)
 ax1.plot(theta_values, difference_d2b_dt2, label=r"$\Delta = $$|(d^2\beta/dt^2)_{C}$ - $(d^2\beta/dt^2)_{FW}|$", color='violet' )
 ax1.tick_params(axis='y', labelcolor=color)
+ax1.set_ylim((0,10))
 
 ax2 = ax1.twinx()
 color = 'tab:red'
@@ -304,6 +306,7 @@ ax2.tick_params(axis='y', labelcolor=color)
 fig.tight_layout()
 plt.title(r'$\Delta$ and $(d^2\beta/dt^2)_{C}$ vs $\theta$')
 fig.legend(loc="upper right", bbox_to_anchor=(1,1), bbox_transform=ax1.transAxes)
+plt.xlim((0,360))
 plt.show()
 
 # %%
