@@ -121,6 +121,8 @@ use the previously found solution as an initial starting guess for the next valu
 points]
 }
 
+The initial values chosen for this part are $[\theta_2 = \phi = 30^{\circ} , \theta_3 = 0^{\circ}]$. There were other initial values where we don't get convergence or results have no physical meaning.
+
 \begin{tcolorbox}
     \begin{figure}[H]
     \centering
@@ -139,8 +141,20 @@ points]
 \end{figure}
 \end{tcolorbox}
 \begin{tcolorbox}
-    The values obtained for both ($\frac{d\phi}{d\theta})_{Forward}$ and ($\frac{d\phi}{d\theta})_{Centered}$ almost overlap with each other. \textbf{We expect ($\frac{d\phi}{d\theta})_{Centered}$ to be more accurate as the error term for center difference is $O(h^2)$ and that of forward difference is $O(h)$}.
+    The values obtained for both ($\frac{d\phi}{d\theta})_{Forward}$ and ($\frac{d\phi}{d\theta})_{Centered}$ almost overlap with each other. \textbf{We expect ($\frac{d\phi}{d\theta})_{Centered}$ to be more accurate as the error term for center difference is $\frac{h^2}{6} f^{(3)}(x)$ and that of forward difference is $\frac{h}{2} f''(x)$}.
+    \\
+     
 \end{tcolorbox} 
+
+\begin{tcolorbox}
+If we assume the centre value to be true, and plot $\Delta = $$|(d\phi/d\theta)_{C}$ - $(d\phi/d\theta)_{FW}|$, \textbf{we find that the minimas of $\Delta$ coincide with points where derivative of $\frac{d\phi}{d\theta}$ is close to zero.} This checks out with the fact as as the \textbf{error term has a factor of second derivative and at those points they should have the same error behaviour.}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{HW4/imagesmall/centered-fwd.png}
+        \caption{Angular acceleration vs $\theta$}
+        \label{fig:fullpageimage}
+    \end{figure}
+\end{tcolorbox}
 
 \end{question}
 
