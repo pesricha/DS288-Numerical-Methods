@@ -141,13 +141,13 @@ The initial values chosen for this part are $[\theta_2 = \phi = 30^{\circ} , \th
 \end{figure}
 \end{tcolorbox}
 \begin{tcolorbox}
-    The values obtained for both ($\frac{d\phi}{d\theta})_{Forward}$ and ($\frac{d\phi}{d\theta})_{Centered}$ almost overlap with each other. \textbf{We expect ($\frac{d\phi}{d\theta})_{Centered}$ to be more accurate as the error term for center difference is $\frac{h^2}{6} f^{(3)}(x)$ and that of forward difference is $\frac{h}{2} f''(x)$}.
+    The values obtained for both ($\frac{d\phi}{d\theta})_{Forward}$ and ($\frac{d\phi}{d\theta})_{Centered}$ indistinguishable to the naked eye. \textbf{We expect ($\frac{d\phi}{d\theta})_{Centered}$ to be more accurate as the error term for center difference is $\frac{h^2}{6} f'''(x)$ and that of forward difference is $\frac{h}{2} f''(x)$}.
     \\
      
 \end{tcolorbox} 
 
 \begin{tcolorbox}
-If we assume the centre value to be true, and plot $\Delta = $$|(d\phi/d\theta)_{C}$ - $(d\phi/d\theta)_{FW}|$, \textbf{we find that the minimas of $\Delta$ coincide with points where derivative of $\frac{d\phi}{d\theta}$ zero.} This checks out with the fact as as the \textbf{error term has a factor of second derivative => $f''(x) = 0$. and at those points both center and forward have the same error term.}
+If we assume the centre value to be true, and plot $\Delta = $$|(d\phi/d\theta)_{C}$ - $(d\phi/d\theta)_{FW}|$, \textbf{we find that the minimas of $\Delta$ coincide with points where derivative of $\frac{d\phi}{d\theta}$ zero.} This checks out with the fact as as the \textbf{error term has a factor of second derivative $\implies$ $f''(x) = 0$. and at those points both center and forward have the same error term and $\Delta = 0$.}
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.7\textwidth]{HW4/imagesmall/compare center-fwd phi.png}
@@ -171,21 +171,18 @@ As a check on your answers, you should find that when \(\theta = 100^\circ\), th
 
     From the figure given in assignment, alpha can be computed as: 
     \fbox{$\alpha = \phi + 180^\circ - 31^\circ$}.
-
-    Then we can solve for $\beta$ using the same method that we used for Q1.
-
-    The initial values chosen for this part are $[\theta_2 = \phi = 30^{\circ} , \theta_3 = 0^{\circ}]$. There were other initial values where we don't get convergence or results have no physical meaning.
+    The initial values chosen for this part are $[\theta_2 = \beta = 30^{\circ} , \theta_3 = 270^{\circ}]$.  
 
 \begin{tcolorbox}
     \begin{figure}[H]
     \centering
-    \begin{minipage}{0.493\textwidth}
+    \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{HW4/imagesmall/beta vs theta.png}
-        \caption{$\phi$ vs $\theta$ }
+        \caption{$\beta$ vs $\theta$ }
         \label{fig:image1}
     \end{minipage}\hfill
-    \begin{minipage}{0.502\textwidth}
+    \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{HW4/imagesmall/angularvel vs theta.png}
         \caption{Angular velocity vs $\theta$}
@@ -210,18 +207,38 @@ As a check on your answers, you should find that when \(\theta = 100^\circ\), th
     \label{tab:angular_values}
 \end{table}
 
+\fbox{From Table 1, at $\theta = 100^o$, Angular Velocity $\approx$ 10 rad/sec and  Angular Acceleration $\approx$ -25 rad/sec$^2$.}
+
 \begin{tcolorbox}
-    From the values in table 1, it's evident that at $\theta = 100^o$, Angular Velocity is close to 10 rad/sec and Angular Acceleration is close to -25 rad/sec$^2$.
+
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.6\textwidth]{HW4/imagesmall/accel vs theta.png}
         \caption{Angular acceleration vs $\theta$}
         \label{fig:fullpageimage}
     \end{figure}
+
+We can also see that $\Delta$ when calculated for angular velocity and angular acceleration shows minimas of $\Delta$ coincide with points where derivative of the corresponding function is zero similar to Figure 3 and at those point $\Delta = 0$.
+    \begin{figure}[H]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{HW4/imagesmall/compare center-fwd beta.png}
+        \caption{$\Delta = $$|(d\beta/dt)_{C}$ - $(d\beta/dt)_{FW}|$  and $(d\phi/d\theta)_{C}$ vs $\theta$ }
+        \label{fig:image1}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48 \textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{HW4/imagesmall/compare 2nd center-fwd beta.png}
+        \caption{$\Delta = $$|(d^2\beta/dt^2)_{C}$ - $(d^2\beta/dt^2)_{FW}|$ and $(d^2\beta/dt^2)_{C}$ vs $\theta$}
+        \label{fig:image2}
+    \end{minipage}
+\end{figure}
 \end{tcolorbox}
 
-    
 \end{question}
+
+\lstinputlisting{Homework-4.py}
 
 \end{document}
 
