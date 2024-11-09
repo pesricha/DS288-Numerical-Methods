@@ -240,6 +240,7 @@ $$
 \end{tcolorbox}
 
 \end{question}
+
 \begin{question}{Q2 Apply Romberg Integration to the following integrals until \( R_{n-1, n-1} \) and \( R_{n, n} \) agree to within \( 10^{-5} \). Report the value of \( n \) and the number of function evaluations. Also, compute the result to that obtained from the Trapezoidal rule for the same number \( n \) (note that you already calculate this value to get \( R_{n, n} \)). \textbf{[3.5 points]}
 
 \begin{center}
@@ -267,10 +268,10 @@ $$
 \centering
 \begin{tabular}{ccccccc}
 \hline
-\textbf{Integral} & \( R_{n,n} \) & \( n \) & \textbf{True Value} & \( \epsilon_{n,n} \) & \#Function Evaluations \\
+\textbf{Integral} & \textbf{Romberg =} \( R_{n,n} \) & \( n \) & \textbf{True Value} & \( \epsilon_{n,n} \) & \#Function Evaluations \\
 \hline
-\( \int_0^1 x^{1/3} \, dx \) & 0.749995 & 11 & 0.750000 & 0.000005 & 2049 \\
-\( \int_0^1 x^2 e^{-x} \, dx \) & 0.160603 & 3 & 0.160603 & 0.000000 & 9 \\
+\( \int_0^1 x^{1/3} \, dx \) & \textbf{0.749995} & 11 & 0.750000 & 0.000005 & \textbf{2049} \\
+\( \int_0^1 x^2 e^{-x} \, dx \) & \textbf{0.160603} & 3 & 0.160603 & 0.000000 & \textbf{9} \\
 \hline
 \end{tabular}
 \caption{Romberg Integral for a) and b) with true values, errors, and function evaluations.}
@@ -283,7 +284,7 @@ $$
 \centering
 \begin{tabular}{ccccccc}
 \hline
-\textbf{Integral} & \( n \) & \( R_{n,0} \) & \textbf{True Value} & \( \epsilon_{n,0} \) & \( h \) \\
+\textbf{Integral} & \( n \) & \textbf{Trapezoidal =} \( R_{n,0} \) & \textbf{True Value} & \( \epsilon_{n,0} \) & \( h \) \\
 \hline
 \( \int_0^1 x^{1/3} \, dx \) & 11 & 0.749989 & 0.750000 & 0.000011 & 0.000488 \\
 \( \int_0^1 x^2 e^{-x} \, dx \) & 3 & 0.161080 & 0.160603 & 0.000477 & 0.125000 \\
@@ -293,29 +294,84 @@ $$
 \end{table}
 
 \textbf{In both the cases, \fbox{$\epsilon_{n,n} < \epsilon_{n,0}$}. This checks out with what we studied in class as $\epsilon_{n,n}$ is $O(h^{2n+2})$ and $\epsilon_{n,0}$ = $O(h^2)$.} An attempt was made to evaluate the ratio of $\frac{\log\epsilon_{n,n}}  {\log\epsilon_{n,0}}$ which should've been $\approx 2n$, but results were not consistent probably because of small value of $h$.
-\hfill\\ 
-\\
 
-
-\begin{minipage}{0.48\textwidth}
-    It is also noticed that \( \int_0^1 x^{1/3} \, dx \) converged slower than \( \int_0^1 x^2 e^{-x} \, dx \) even though the former has a simpler form. This is because Rhomberg Integration is based on trapezoidal rule, which integrates the function by linearly interpolating points $(x_{i}, f_{i})$ and $(x_{i+1}, f_{i+1})$. Hence it is very good at approximating the integral when the function in which the change in derivative is less in the integrating region.\\ \\ 
-    As evident from the figure, the rate of change of derivative in $x^{1/3}$ is very high for the first half and hence it takes more iterations to converge.
-\end{minipage}%
-\hfill % Space between the minipages
-\begin{minipage}{0.46\textwidth}
-    % Right minipage with an image
+\begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{example-image} % Replace with actual image file
-    \captionof{figure}{Example Image}
-\end{minipage}
-
-\end{question} 
-
-
+    \begin{minipage}{0.48\textwidth}
+       \begin{tcolorbox}
+           {\textbf{It is also noticed that \( \int_0^1 x^{1/3} \, dx \) converged slower than \( \int_0^1 x^2 e^{-x} \, dx \) }}even though the former has a simpler form. This is because Rhomberg Integration is based on trapezoidal rule, which integrates the function by linearly interpolating points $(x_{i}, f_{i})$ and $(x_{i+1}, f_{i+1})$.\\ \\
+           \textbf{From the figure, we can see that for $x\in[0,0.2]$, the linear interpolation will be very inaccurate for large h and hence the slow convergence.}
+   
+       \end{tcolorbox}  
+    \end{minipage}\hfill
+    \begin{minipage}{0.48 \textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{HW5/f_a and f_b.png}
+        \caption{$f(x) = x^{1/3}$ and $f(x) = x^2e^{-x}$}
+        \label{fig:image2}
+    \end{minipage}
+\end{figure}
+\end{question}
 
 \begin{question}{Q3 Approximate the integrals in Problem 2(a) and 2(b) using Gaussian Quadrature with
  n=2, 3, 4, and 5. Report the number of function evaluations and compare the results
  with those obtained using Romberg Integration in Problem-2. [3.5 points]}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c c c}
+\hline
+$n$ & $GQ_n(x^{1/3})$ & $GQ_n(x^2 e^{-x})$ & \# function evaluations & $e_n(x^{1/3})$ & $e_n(x^2 e^{-x})$ \\
+\hline
+2 & 0.759778 & 0.159410 & 2 & 0.009778 & 0.001193 \\
+3 & 0.753855 & 0.160595 & 3 & 0.003855 & 0.000008 \\
+4 & 0.751946 & 0.160603 & 4 & 0.001946 & 0.000000 \\
+5 & 0.751132 & 0.160603 & 5 & 0.001132 & 0.000000 \\
+\hline
+\end{tabular}
+\caption{Gaussian Quadrature for , corresponding function evaluations, and error estimates.}
+\label{tab:gq_with_error}
+\end{table}
+
+\begin{tcolorbox}
+    Since the number of function evaluations is 2,3,4 and 5 for Gaussian Quadrature, we will these values to Romberg's $n$ = 0, 1 and 2 (corresponding to 2, 3 and 5 function evaluations respectively.)
+\end{tcolorbox}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c c c c c c}
+\hline
+$n$ & $R_{n,n}(x^{1/3})$ & $R_{n,n}(x^2e^{-x})$ & \# function evaluations & $\epsilon_{n,n}(x^{1/3})$ & $\epsilon_{n,n}(x^2e^{-x})$ \\
+\hline
+0 & 0.500000 & 0.183940 & 2 & 0.250000 & 0.023337 \\
+1 & 0.695800 & 0.162402 & 3 & 0.054200 & 0.001799 \\
+2 & 0.730634 & 0.160611 & 5 & 0.019366 & 0.000008 \\
+\hline
+\end{tabular}
+\caption{Table with $n$, $R_{n,n}$, function evaluations, and absolute errors.}
+\label{tab:rn_table}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{c | c c | c c}
+\hline
+\#F.E & $\epsilon_{n,n}(x^{1/3})$ (R) & $\epsilon_n(x^{1/3})$ (GQ) & $\epsilon_{n,n}(x^2e^{-x})$ (R) & $\epsilon_n(x^2 e^{-x})$ (GQ) \\
+\hline
+2 & 0.250000 & \textbf{\underline{0.009778}$_L$} & 0.023337 & \textbf{\underline{0.001193}$_L$} \\
+3 & 0.054200 & \textbf{\underline{0.003855}$_L$} & 0.001799 & \textbf{\underline{0.000008}$_L$} \\
+5 & 0.019366 & \textbf{\underline{0.001132}$_L$} & 0.000008 & \textbf{\underline{0.000000}$_L$} \\
+\hline
+\end{tabular}
+\caption{Comparison of error values for function evaluations 2, 3, and 5, with errors from the Gaussian Quadrature (GQ) and Romberg (R) methods. The lesser error is marked in underline bold with subscript $_L$.}
+\label{tab:comparison_error_func_evals}
+\end{table}
+
+
+\begin{tcolorbox}
+    From Table \ref{tab:comparison_error_func_evals} it is evident that {\textbf{for the same number of function evaluations, Gaussian Quadrature gives lesser error than Romberg integration}} for both the problems.\\ \\ Also to be noted that for problem a), \textbf{to beat the gaussian quadrature corresponding to \underline{5 function evaluations}, Romberg requires n = 6 ($\epsilon_{6,6} = 0.000465$) that corresponds to \underline{65 evaluations}! }
+\end{tcolorbox}
+
 \end{question}
     
 \end{document}
