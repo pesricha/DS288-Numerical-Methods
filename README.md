@@ -8,4 +8,5 @@ This repository contains five homework assignments for the DS288-Numerical-Metho
 - Homework 4: Numerical Differentiation
 - Homework 5: Numerical Integration
 - Homework 6: Ordinary Differential Equations (Not submitted as got Full in the first 5 in best 5 out of 6)
+
 Explore each directory for detailed problem statements, code implementations, and results.
